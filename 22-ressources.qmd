@@ -2,11 +2,3 @@
 
 {{< include _setup.qmd >}}
 
-## tbd
-
-
-
-
-
-
-

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction à la statistique bivariée avec R - 4&nbsp; Corrélation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./12-Régression.html" rel="next">
+<link href="./03-Base.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/bookup_fonts_embed-0.0/fonts-download.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="css/tidyverse.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Corrélation.html">Statistique bivariée I : Y quanti</a></li><li class="breadcrumb-item"><a href="./11-Corrélation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Corrélation</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction à la statistique bivariée avec R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/ClaudeGrasland/bivar2023/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./introduction_R_bivarié.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./introduction_R_bivarié.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Basculer en mode lecteur">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">À propos de ce document</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Introduction à R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-PremierPas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Premier pas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-OfficeKiller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Office Killer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R-Base</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Statistique bivariée I : Y quanti</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Corrélation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Corrélation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Régression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Régression simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analyse de variance</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Aller plus loin</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Annexes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-ressources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Ressources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#préparation-des-données" id="toc-préparation-des-données" class="nav-link active" data-scroll-target="#préparation-des-données"><span class="header-section-number">4.1</span> Préparation des données</a>
+  <ul class="collapse">
+  <li><a href="#chargement-du-tableau-principal" id="toc-chargement-du-tableau-principal" class="nav-link" data-scroll-target="#chargement-du-tableau-principal"><span class="header-section-number">4.1.1</span> Chargement du tableau principal</a></li>
+  <li><a href="#choix-des-deux-variables-à-analyser" id="toc-choix-des-deux-variables-à-analyser" class="nav-link" data-scroll-target="#choix-des-deux-variables-à-analyser"><span class="header-section-number">4.1.2</span> Choix des deux variables à analyser</a></li>
+  <li><a href="#on-est-malin" id="toc-on-est-malin" class="nav-link" data-scroll-target="#on-est-malin"><span class="header-section-number">4.1.3</span> On est malin …</a></li>
+  <li><a href="#on-est-paresseux" id="toc-on-est-paresseux" class="nav-link" data-scroll-target="#on-est-paresseux"><span class="header-section-number">4.1.4</span> On est paresseux …</a></li>
+  </ul></li>
+  <li><a href="#exploration-visuelle" id="toc-exploration-visuelle" class="nav-link" data-scroll-target="#exploration-visuelle"><span class="header-section-number">4.2</span> Exploration visuelle</a>
+  <ul class="collapse">
+  <li><a href="#visualisation-avec-plotxy" id="toc-visualisation-avec-plotxy" class="nav-link" data-scroll-target="#visualisation-avec-plotxy"><span class="header-section-number">4.2.1</span> Visualisation avec plot(X,Y)</a></li>
+  <li><a href="#identification-des-points-avec-cor-text" id="toc-identification-des-points-avec-cor-text" class="nav-link" data-scroll-target="#identification-des-points-avec-cor-text"><span class="header-section-number">4.2.2</span> Identification des points avec <strong>cor</strong> + <strong>text(…)</strong></a></li>
+  <li><a href="#ajout-de-lignes-horizontales-ou-verticales-avec-cor-abline" id="toc-ajout-de-lignes-horizontales-ou-verticales-avec-cor-abline" class="nav-link" data-scroll-target="#ajout-de-lignes-horizontales-ou-verticales-avec-cor-abline"><span class="header-section-number">4.2.3</span> Ajout de lignes horizontales ou verticales avec <strong>cor()</strong> + <strong>abline(…)</strong></a></li>
+  <li><a href="#au-delà-de-r-base" id="toc-au-delà-de-r-base" class="nav-link" data-scroll-target="#au-delà-de-r-base"><span class="header-section-number">4.2.4</span> Au delà de R-Base …</a></li>
+  </ul></li>
+  <li><a href="#coefficients-de-corrélation" id="toc-coefficients-de-corrélation" class="nav-link" data-scroll-target="#coefficients-de-corrélation"><span class="header-section-number">4.3</span> Coefficients de corrélation</a>
+  <ul class="collapse">
+  <li><a href="#définition" id="toc-définition" class="nav-link" data-scroll-target="#définition"><span class="header-section-number">4.3.1</span> Définition</a></li>
+  <li><a href="#la-fonction-cor" id="toc-la-fonction-cor" class="nav-link" data-scroll-target="#la-fonction-cor"><span class="header-section-number">4.3.2</span> La fonction <strong>cor()</strong></a></li>
+  <li><a href="#la-fonction-cor.test" id="toc-la-fonction-cor.test" class="nav-link" data-scroll-target="#la-fonction-cor.test"><span class="header-section-number">4.3.3</span> La fonction cor.test()</a></li>
+  <li><a href="#en-résumé-intensité-ou-significativité" id="toc-en-résumé-intensité-ou-significativité" class="nav-link" data-scroll-target="#en-résumé-intensité-ou-significativité"><span class="header-section-number">4.3.4</span> En résumé : intensité ou significativité ?</a></li>
+  </ul></li>
+  <li><a href="#matrice-de-corrélation" id="toc-matrice-de-corrélation" class="nav-link" data-scroll-target="#matrice-de-corrélation"><span class="header-section-number">4.4</span> Matrice de corrélation</a>
+  <ul class="collapse">
+  <li><a href="#objectif-de-lanalyse" id="toc-objectif-de-lanalyse" class="nav-link" data-scroll-target="#objectif-de-lanalyse"><span class="header-section-number">4.4.1</span> Objectif de l’analyse</a></li>
+  <li><a href="#utilisation-des-résultats" id="toc-utilisation-des-résultats" class="nav-link" data-scroll-target="#utilisation-des-résultats"><span class="header-section-number">4.4.2</span> Utilisation des résultats</a></li>
+  <li><a href="#visualisation-dune-matrice-de-corrélation" id="toc-visualisation-dune-matrice-de-corrélation" class="nav-link" data-scroll-target="#visualisation-dune-matrice-de-corrélation"><span class="header-section-number">4.4.3</span> Visualisation d’une matrice de corrélation</a></li>
+  <li><a href="#exemple-création-dun-tableau-quantitatif" id="toc-exemple-création-dun-tableau-quantitatif" class="nav-link" data-scroll-target="#exemple-création-dun-tableau-quantitatif"><span class="header-section-number">4.4.4</span> Exemple : création d’un tableau quantitatif</a></li>
+  <li><a href="#utilisation-du-package-psych" id="toc-utilisation-du-package-psych" class="nav-link" data-scroll-target="#utilisation-du-package-psych"><span class="header-section-number">4.4.5</span> Utilisation du package psych</a></li>
+  <li><a href="#utilisation-du-package-factominer" id="toc-utilisation-du-package-factominer" class="nav-link" data-scroll-target="#utilisation-du-package-factominer"><span class="header-section-number">4.4.6</span> Utilisation du package factoMineR</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/bivar2023/edit/main/11-Corrélation.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Corrélation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="resources/figures/chap4_intro.jpg" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/bivaR2023/raw/main/resources/exos/exo4.zip">dossier exo4</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo4.Rproj</code> dans Rstudio.</li>
+</ul>
+<section id="préparation-des-données" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="préparation-des-données"><span class="header-section-number">4.1</span> Préparation des données</h2>
+<section id="chargement-du-tableau-principal" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="chargement-du-tableau-principal"><span class="header-section-number">4.1.1</span> Chargement du tableau principal</h3>
+<p>On charge notre bon vieux fichier des pays européens en 1988</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>don<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"resources/data/europe88/euro1988.csv"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep =</span> <span class="st">";"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">header =</span> T)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>BLOC<span class="ot">&lt;-</span><span class="fu">as.factor</span>(don<span class="sc">$</span>BLOC)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don<span class="sc">$</span>BLOC)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Capitaliste"</span>,<span class="st">"Socialiste"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(don)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   PAYS        BLOC   PNB  TMI ESP URB NAT MOR FEC JEU VIE SUP  POP       X</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  ALB  Socialiste   600 43.0  71  34  27   6 3.3  35   5  29  3.1 4825115</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  AUT Capitaliste 10000 10.3  75  55  12  12 1.4  18  14  84  7.6 4299715</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  BEL Capitaliste  9200  9.7  75  95  12  11 1.5  19  14  31  9.9 3636312</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  BGR  Socialiste  2000 14.5  72  65  13  11 2.0  21  11 111  9.0 5206070</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  CHE Capitaliste 17800  6.8  77  61  12   9 1.5  17  14  41  6.6 3869378</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  CSK  Socialiste  3200 13.9  71  74  14  12 2.0  24  11 128 15.6 4487005</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         Y</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1684833</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2335579</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2667243</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 1930219</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2243130</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2540281</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="choix-des-deux-variables-à-analyser" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="choix-des-deux-variables-à-analyser"><span class="header-section-number">4.1.2</span> Choix des deux variables à analyser</h3>
+<p>En dehors de BLOC et PAYS, on ne garde que deux variables que l’on renomme X et Y avec <strong>colnames()</strong> et que l’on convertit en type numérique général. Il suffira par la suite de modifier le choix des variables X et Y pour faire d’autres analyses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>eur<span class="ot">&lt;-</span>don[,<span class="fu">c</span>(<span class="st">"PAYS"</span>,<span class="st">"BLOC"</span>,<span class="st">"URB"</span>,<span class="st">"TMI"</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eur)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"PAYS"</span>,<span class="st">"BLOC"</span>,<span class="st">"X"</span>,<span class="st">"Y"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>eur<span class="sc">$</span>X<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(eur<span class="sc">$</span>X)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>eur<span class="sc">$</span>Y<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(eur<span class="sc">$</span>Y)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eur)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   PAYS        BLOC  X    Y</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  ALB  Socialiste 34 43.0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  AUT Capitaliste 55 10.3</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  BEL Capitaliste 95  9.7</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  BGR  Socialiste 65 14.5</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  CHE Capitaliste 61  6.8</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  CSK  Socialiste 74 13.9</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="on-est-malin" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="on-est-malin"><span class="header-section-number">4.1.3</span> On est malin …</h3>
+<p>Mais comme on ne sait plus ce que sont X et Y, on le précise avec des chaînes de caractères qu’on pourra utiliser dans les graphiques. Et on peut préparer une version multilangue …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la version française</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fr_titre <span class="ot">&lt;-</span> <span class="st">"Les pays européens en 1988"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fr_nomX <span class="ot">&lt;-</span> <span class="st">"Taux d'urbanisation en %"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fr_nomY <span class="ot">&lt;-</span> <span class="st">"Taux de mortalité infantile en p. 1000"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fr_auteur <span class="ot">&lt;-</span> <span class="st">"Claude Grasland, Université Paris Diderot, 2020"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la version arabe</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ar_titre <span class="ot">&lt;-</span> <span class="st">"البلدان الأوروبية في عام 1988"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ar_nomX <span class="ot">&lt;-</span>  <span class="st">"معدل التحضر في المائة"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ar_nomY <span class="ot">&lt;-</span> <span class="st">"معدل وفيات الرضع في عام 1000"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ar_auteur <span class="ot">&lt;-</span> <span class="st">"كلود غراسلاند، جامعة باريس ديدرو، 2020"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la version anglaise</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>en_titre <span class="ot">&lt;-</span> <span class="st">"European countries in 1988"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>en_nomX <span class="ot">&lt;-</span> <span class="st">"Urbanisation rate %"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>en_nomY <span class="ot">&lt;-</span> <span class="st">"Infant mortality rate p. 1000"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>en_auteur <span class="ot">&lt;-</span> <span class="st">"Claude Grasland, University Paris Diderot, 2020"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la version russe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ru_titre <span class="ot">&lt;-</span> <span class="st">"Европейские страны в 1988 году"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ru_nomX <span class="ot">&lt;-</span> <span class="st">"Уровень урбанизации в %"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ru_nomY <span class="ot">&lt;-</span> <span class="st">"Коэффициент младенческой смертности в 1000 году"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ru_auteur <span class="ot">&lt;-</span> <span class="st">"Клод Грассленд, Парижский университет Дидро, 2020"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="on-est-paresseux" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="on-est-paresseux"><span class="header-section-number">4.1.4</span> On est paresseux …</h3>
+<p>Comme on prévoit qu’il y aura des différences entre pays socialistes et capitalistes, on crée deux sous-tableaux</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eur_soc<span class="ot">&lt;-</span>eur[eur<span class="sc">$</span>BLOC<span class="sc">==</span><span class="st">"Socialiste"</span>,]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>eur_cap<span class="ot">&lt;-</span>eur[eur<span class="sc">$</span>BLOC<span class="sc">==</span><span class="st">"Capitaliste"</span>,]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exploration-visuelle" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="exploration-visuelle"><span class="header-section-number">4.2</span> Exploration visuelle</h2>
+<section id="visualisation-avec-plotxy" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="visualisation-avec-plotxy"><span class="header-section-number">4.2.1</span> Visualisation avec plot(X,Y)</h3>
+<p>La manière la plus simple d’analyser la relation entre X et Y est d’utiliser un simple plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La fonction plot() comporte de nombreux paramètres permettant d’améliorer le graphique et de l’habiller. Voici un exemple d’habillage en français</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> fr_titre,   <span class="co"># titre</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="dv">1</span>,      <span class="co"># police du titre</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> fr_auteur,   <span class="co"># sous-titre</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.sub =</span> <span class="fl">0.6</span>,     <span class="co"># police du sous-titre</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> fr_nomX,    <span class="co"># nom de l'axe X</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">100</span>),   <span class="co"># intervalle de l'axe X</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> fr_nomY,    <span class="co"># nom de l'axe Y</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),    <span class="co"># intervalle de l'axe Y</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis =</span> <span class="fl">0.8</span>,    <span class="co"># police des gradations d'axes</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.lab =</span> <span class="fl">0.8</span>,     <span class="co"># police des noms d'axes</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>,         <span class="co"># taille des symboles</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)       <span class="co"># couleur des symboles</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/eval-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ou en anglais: il suffit de changer le nom des variables relatives aux titres.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> en_titre,   <span class="co"># titre</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="dv">1</span>,      <span class="co"># police du titre</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> en_auteur,   <span class="co"># sous-titre</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.sub =</span> <span class="fl">0.5</span>,     <span class="co"># police du sous-titre</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> en_nomX,    <span class="co"># nom de l'axe X</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">100</span>),   <span class="co"># intervalle de l'axe X</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> en_nomY,    <span class="co"># nom de l'axe Y</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),    <span class="co"># intervalle de l'axe Y</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis =</span> <span class="fl">0.7</span>,    <span class="co"># police des gradations d'axes</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.lab =</span> <span class="fl">0.7</span>,     <span class="co"># police des noms d'axes</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>,         <span class="co"># taille des symboles</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)       <span class="co"># couleur des symboles</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="identification-des-points-avec-cor-text" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="identification-des-points-avec-cor-text"><span class="header-section-number">4.2.2</span> Identification des points avec <strong>cor</strong> + <strong>text(…)</strong></h3>
+<p>On peut ajouter au graphique généré par <strong>plot(X,Y)</strong> une couche de labels avec <strong>text(X,Y,Code)</strong>. On précise la position avec <strong>pos =</strong>, la taille de police avex <strong>cex =</strong> et la couleur avec <strong>col =</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> eur<span class="sc">$</span>X,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> eur<span class="sc">$</span>Y,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex=</span><span class="fl">0.5</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span> <span class="st">"blue"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> eur<span class="sc">$</span>X,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> eur<span class="sc">$</span>Y,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">label =</span> eur<span class="sc">$</span>PAYS,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.7</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos=</span><span class="dv">3</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="ajout-de-lignes-horizontales-ou-verticales-avec-cor-abline" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="ajout-de-lignes-horizontales-ou-verticales-avec-cor-abline"><span class="header-section-number">4.2.3</span> Ajout de lignes horizontales ou verticales avec <strong>cor()</strong> + <strong>abline(…)</strong></h3>
+<p>On peut rajouter à un graphique des lignes horizontales ou verticales avec abline en précisant leur position avec <strong>h=</strong> ou <strong>v=</strong>, leur épaisseur avec <strong>lwd = </strong>, leur style avec <strong>lty=</strong> et leur couleur avec <strong>col=</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> fr_titre,   <span class="co"># titre</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="dv">1</span>,      <span class="co"># police du titre</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> fr_auteur,   <span class="co"># sous-titre</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.sub =</span> <span class="fl">0.6</span>,     <span class="co"># police du sous-titre</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> fr_nomX,    <span class="co"># nom de l'axe X</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">100</span>),   <span class="co"># intervalle de l'axe X</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> fr_nomY,    <span class="co"># nom de l'axe Y</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),    <span class="co"># intervalle de l'axe Y</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis =</span> <span class="fl">0.8</span>,    <span class="co"># police des gradations d'axes</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.lab =</span> <span class="fl">0.8</span>,     <span class="co"># police des noms d'axes</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>,         <span class="co"># taille des symboles</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)       <span class="co"># couleur des symboles</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout d'une ligne horizontale  correspondant à la moyenne de Y</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(eur<span class="sc">$</span>Y),<span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout d'une ligne verticlae  correspondant à la moyenne de X</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(eur<span class="sc">$</span>X),<span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> eur<span class="sc">$</span>X,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> eur<span class="sc">$</span>Y,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">label =</span> eur<span class="sc">$</span>PAYS,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos=</span><span class="dv">3</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La fonction <strong>abline()</strong> peut servir aussi à tracer la droite de régression Y=aX+b produite par la fonction <strong>lm()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>maregression <span class="ot">=</span> <span class="fu">lm</span>(eur<span class="sc">$</span>Y<span class="sc">~</span>eur<span class="sc">$</span>X)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(maregression,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="au-delà-de-r-base" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="au-delà-de-r-base"><span class="header-section-number">4.2.4</span> Au delà de R-Base …</h3>
+<p>Il existe des packages spécialisés permettant de faire des graphiques plus sophistiqués. Mais on les apprendra ultérieuement. Juste un exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="coefficients-de-corrélation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="coefficients-de-corrélation"><span class="header-section-number">4.3</span> Coefficients de corrélation</h2>
+<section id="définition" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="définition"><span class="header-section-number">4.3.1</span> Définition</h3>
+<section id="relation-linéairemonotonecomplexe" class="level4" data-number="4.3.1.1">
+<h4 data-number="4.3.1.1" class="anchored" data-anchor-id="relation-linéairemonotonecomplexe"><span class="header-section-number">4.3.1.1</span> Relation linéaire/monotone/complexe</h4>
+<ul>
+<li><p>il existe une <strong>relation linéaire</strong> entre deux variables quantitatives X et Y si l’on peut prédire leurs valeurs respectives par les fonctions <strong>Y = a1.X + b1</strong> et <strong>X = a2.X = b2</strong></p></li>
+<li><p>il existe une <strong>relation monotone</strong> entre deux variables quantitatives X et Y si l’on peut prédire les valeurs Y en fonction de celle de X far une <strong>fonction Y=f(X)</strong> qui est <strong>strictement croissante</strong> ou <strong>strictement décroissante</strong>.</p></li>
+<li><p>il existe une <strong>relation complexe</strong> entre deux variables quantitatives X et Y si l’on peut prédire les valeurs Y en fonction de celle de X par une <strong>fonction Y=f(X)</strong> qui comporte au moins un point minimum ou maximum de changement de pente (<strong>annulation de la dérivée première</strong>)</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="relation-positivenégativenulle" class="level4" data-number="4.3.1.2">
+<h4 data-number="4.3.1.2" class="anchored" data-anchor-id="relation-positivenégativenulle"><span class="header-section-number">4.3.1.2</span> Relation positive/négative/nulle</h4>
+<ul>
+<li><p>Une relation linéaire ou monotone est <strong>positive</strong> si à un accroissement de X correspond un accroissement de Y</p></li>
+<li><p>Une relation linéaire ou monotone est <strong>négative</strong> si à un accroissement de X correspond une diminution de Y</p></li>
+<li><p>une relation est <strong>nulle</strong> si une variation de X n’entraine pas de variation de Y</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="relation-fortefaiblenulle" class="level4" data-number="4.3.1.3">
+<h4 data-number="4.3.1.3" class="anchored" data-anchor-id="relation-fortefaiblenulle"><span class="header-section-number">4.3.1.3</span> Relation forte/faible/nulle</h4>
+<ul>
+<li><p>Une relation linéaire est <strong>forte</strong> si une valeur de X permet de prédire la valeur de Y avec une faible marge d’erreur.</p></li>
+<li><p>Une relation linéaire ou monotone est <strong>faible</strong> si une valeur de X permet de prédire la valeur de Y avec une forte marge d’erreur.</p></li>
+<li><p>une relation linéaire est <strong>nulle</strong> si une valeur de X ne permet aucunement de prédire la valeur de Y</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="relation-significativenon-siginificative" class="level4" data-number="4.3.1.4">
+<h4 data-number="4.3.1.4" class="anchored" data-anchor-id="relation-significativenon-siginificative"><span class="header-section-number">4.3.1.4</span> Relation significative/non siginificative</h4>
+<ul>
+<li><p>Une relation linéaire est <strong>significative</strong> si l’effectif permettant de la mettre en évidence est suffisamment grand pour qu’on puisse exclure qu’elle soit l’effet du hasard.</p></li>
+<li><p>Une relation linéaire ou monotone est <strong>non significative</strong> si l’effectif permettant de la mettre en évidence n’est pas suffisamment grand pour qu’on puisse exclure qu’elle soit l’effet du hasard.</p></li>
+<li><p>On considère traditionnellement qu’une relation est significative s’il y a <strong>moins de 5% de chances</strong> qu’elle soit l’effet du hasard (<strong>p-value &lt; 0.05</strong>).</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="la-fonction-cor" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="la-fonction-cor"><span class="header-section-number">4.3.2</span> La fonction <strong>cor()</strong></h3>
+<ul>
+<li><p>La fonction <strong>cor()</strong> permet de mesurer le coefficient de corrélation de deux variable X et Y.</p></li>
+<li><p>Elle permet de détecter les <strong>relations linéaires</strong> en choisissant le paramètre (par défaut) <strong>method = pearson</strong><br>
+</p></li>
+<li><p>Elle permet de détecter <strong>les relations non linéaires</strong> en choisissant le paramètre <strong>method = spearman</strong> qui mesure l’existence d’une <strong>relation monotone</strong> entre les rangs de X et Y</p></li>
+<li><p>La syntaxe de la fonction <strong>cor()</strong> est très simple et permet de calculer trois types de corrélation. La méthode par défaut est <strong>pearson</strong> c’est-à-dire le coefficient de corrélation linéaire</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.6547219</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y, <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.5699443</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(eur<span class="sc">$</span>X,eur<span class="sc">$</span>Y, <span class="at">method =</span> <span class="st">"kendall"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.4053653</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>cor()</strong> permet de savoir si la relation est linéaire ou monotone</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>cor()</strong> permet de repérer l’effet d’une valeur exceptionnelle</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>cor()</strong> permet de savoir si la relation est positive ou négative</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>cor()</strong> permet de avoir si la relation est forte ou faible</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="la-fonction-cor.test" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="la-fonction-cor.test"><span class="header-section-number">4.3.3</span> La fonction cor.test()</h3>
+<ul>
+<li><p>la fonction <strong>cor()</strong> permet de savoir si une relation est forte ou faible, positive ou négative, linéaire ou non linéaire. Mais <strong>cor()</strong> ne permet pas de savoir si une relation est significative ou pas.</p></li>
+<li><p>C’est la fonction <strong>cor.test()</strong> qui permet de <strong>tester la significativité d’une relation</strong> en fournissant un <strong>intervalle de confiance du coefficient de corrélation</strong> et une probabilité de rejet de H0 : il n’y a pas de relation appelée en anglais la <strong>p-value</strong>.</p></li>
+<li><p>p-value &gt; 0.10 : relation non significative</p></li>
+<li><p>0.10 &gt; p-value &gt; 0.05 : relation presque significative</p></li>
+<li><p>p-value &lt; 0.05 : relation significative</p></li>
+<li><p>p-value &lt; 0.01 : relation très significative</p></li>
+</ul>
+<p>Même syntaxe que cor() :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(eur<span class="sc">$</span>Y,eur<span class="sc">$</span>X)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Pearson's product-moment correlation</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  eur$Y and eur$X</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -4.1541, df = 23, p-value = 0.0003835</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.8340765 -0.3501838</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        cor </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.6547219</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(eur<span class="sc">$</span>Y,eur<span class="sc">$</span>X, <span class="at">method=</span><span class="st">"spearman"</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in cor.test.default(eur$Y, eur$X, method = "spearman"): Cannot compute</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; exact p-value with ties</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Spearman's rank correlation rho</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  eur$Y and eur$X</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; S = 4081.9, p-value = 0.002936</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true rho is not equal to 0</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        rho </span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.5699443</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="en-résumé-intensité-ou-significativité" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="en-résumé-intensité-ou-significativité"><span class="header-section-number">4.3.4</span> En résumé : intensité ou significativité ?</h3>
+<ul>
+<li><p>Le carré du coefficient de corrélation appelé <strong>r-square</strong> ou <strong>r2</strong> permet de mesurer le pouvoir explicatif de X par rapport à Y. Il ne dépend pas du nombre d’observations.</p></li>
+<li><p>le test de significativité ou <strong>p-value</strong> mesure la significativité de la relation c’est-à-dire le fait que la relation entre X et Y ne soit pas l’effet du hasard. Il dépend à la fois du niveau de corrélation et du nombre d’observations.</p></li>
+<li><p>A gauche : une relation forte mais non significative</p></li>
+<li><p>A droite : une relation faible mais très significative</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Analysez le diagramme suivant :</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Analysez les deux diagrammes suivants :</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="matrice-de-corrélation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="matrice-de-corrélation"><span class="header-section-number">4.4</span> Matrice de corrélation</h2>
+<section id="objectif-de-lanalyse" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="objectif-de-lanalyse"><span class="header-section-number">4.4.1</span> Objectif de l’analyse</h3>
+<ul>
+<li><p>Soit un ensemble de variables quantitatives continues <strong><span class="math inline">\((X_1...X_i...X_k)\)</span></strong> décrivant les <strong>mêmes individus</strong>.</p></li>
+<li><p>On se propose de construire la matrice <strong><span class="math inline">\(R_{ij}[1...i...k ; 1...j...k]\)</span></strong> indiquant pour chaque paire de variable <span class="math inline">\(ij\)</span> leur <strong>coefficient de corrélation</strong> (linéaire ou de rang)</p></li>
+<li><p>Puis de construire la matrice <strong><span class="math inline">\(p_{ij}[1...i...k ; 1...j...k]\)</span></strong> indiquant pour chaque paire de variable <span class="math inline">\(ij\)</span> la probabilité H0 d’absence de relation, c’est-à-dire le degré de <strong>significativité</strong> de la corrélation.</p></li>
+</ul>
+</section>
+<section id="utilisation-des-résultats" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="utilisation-des-résultats"><span class="header-section-number">4.4.2</span> Utilisation des résultats</h3>
+<ol type="1">
+<li><p>Mettre en évidence des <strong>groupes de variables significativement corrélées entre elles</strong>, que ce soit de façon positive ou négative.</p></li>
+<li><p>Préparer la réalisation d’une <strong>analyse en composantes principales</strong> qui regroupera les variables corrélées entre elles en facteurs.</p></li>
+<li><p>Identifier des variables non redondantes pour construire un modèle de <strong>régression multiple</strong>.</p></li>
+<li><p>Indentifier des variables fortement corrélées pouvant servir de proxy pour estimer des <strong>valeurs manquantes</strong> dans un tableau</p></li>
+</ol>
+</section>
+<section id="visualisation-dune-matrice-de-corrélation" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="visualisation-dune-matrice-de-corrélation"><span class="header-section-number">4.4.3</span> Visualisation d’une matrice de corrélation</h3>
+<p>_ Sous la forme de <strong>tableaux</strong> montrant si possible à la fois les coefficients de corrélation et les seuils de significativité.</p>
+<ul>
+<li><p>Sous la forme de <strong>graphes</strong> montrant de façon visuelle l’intesité, le signe et la significativité des relations.</p></li>
+<li><p>Sous la forme de <strong>plans factoriels</strong> résultant d’une analyse en composantes principales.</p></li>
+</ul>
+<p>Chacun de ces objectifs supposant en général l’emploi de packages spécialisés.</p>
+</section>
+<section id="exemple-création-dun-tableau-quantitatif" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="exemple-création-dun-tableau-quantitatif"><span class="header-section-number">4.4.4</span> Exemple : création d’un tableau quantitatif</h3>
+<p>On ne sélectionne que des variables quantitatives et on ajoute les noms des pays en attribut des lignes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span>don[,<span class="fu">c</span>(<span class="st">"PNB"</span>,<span class="st">"TMI"</span>,<span class="st">"ESP"</span>,<span class="st">"URB"</span>,<span class="st">"NAT"</span>,<span class="st">"MOR"</span>,<span class="st">"FEC"</span>)]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(tab)<span class="ot">&lt;-</span>don<span class="sc">$</span>PAYS</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tab,<span class="dv">3</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       PNB  TMI ESP URB NAT MOR FEC</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ALB   600 43.0  71  34  27   6 3.3</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AUT 10000 10.3  75  55  12  12 1.4</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEL  9200  9.7  75  95  12  11 1.5</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On calcule la corrélation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resul<span class="ot">&lt;-</span><span class="fu">cor</span>(tab)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(resul)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num [1:7, 1:7] 1 -0.658 0.83 0.508 -0.466 ...</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ : chr [1:7] "PNB" "TMI" "ESP" "URB" ...</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ : chr [1:7] "PNB" "TMI" "ESP" "URB" ...</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On affiche la matrice de corrélation en arrondissant les valeurs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(resul,<span class="dv">3</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        PNB    TMI    ESP    URB    NAT    MOR    FEC</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PNB  1.000 -0.658  0.830  0.508 -0.466  0.125 -0.614</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TMI -0.658  1.000 -0.728 -0.655  0.797 -0.414  0.814</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ESP  0.830 -0.728  1.000  0.583 -0.501 -0.071 -0.619</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URB  0.508 -0.655  0.583  1.000 -0.514  0.352 -0.554</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NAT -0.466  0.797 -0.501 -0.514  1.000 -0.482  0.950</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; MOR  0.125 -0.414 -0.071  0.352 -0.482  1.000 -0.426</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; FEC -0.614  0.814 -0.619 -0.554  0.950 -0.426  1.000</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="utilisation-du-package-psych" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="utilisation-du-package-psych"><span class="header-section-number">4.4.5</span> Utilisation du package psych</h3>
+<p>La fonction <em>cor.test()</em> de Rbase ne permet pas de calculer les corrélations pour toute une matrice. Aussi on charge le package <strong>psych</strong> qui dispose d’une fonction <em>corr.test()</em> beaucoup plus puissante qui crée plusieurs matrices de résultats</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'psych'</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from 'package:car':</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     logit</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from 'package:ggplot2':</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     %+%, alpha</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span>psych<span class="sc">::</span><span class="fu">corr.test</span>(tab)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(results)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "r"      "n"      "t"      "p"      "p.adj"  "se"     "sef"    "adjust"</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] "sym"    "ci"     "ci2"    "ci.adj" "stars"  "Call"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On retrouve la matrice des coefficiences de corrélation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(results<span class="sc">$</span>r,<span class="dv">3</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        PNB    TMI    ESP    URB    NAT    MOR    FEC</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PNB  1.000 -0.658  0.830  0.508 -0.466  0.125 -0.614</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TMI -0.658  1.000 -0.728 -0.655  0.797 -0.414  0.814</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ESP  0.830 -0.728  1.000  0.583 -0.501 -0.071 -0.619</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URB  0.508 -0.655  0.583  1.000 -0.514  0.352 -0.554</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NAT -0.466  0.797 -0.501 -0.514  1.000 -0.482  0.950</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; MOR  0.125 -0.414 -0.071  0.352 -0.482  1.000 -0.426</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; FEC -0.614  0.814 -0.619 -0.554  0.950 -0.426  1.000</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mais aussi la matrice des tests de significativité</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(results<span class="sc">$</span>p,<span class="dv">3</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       PNB   TMI   ESP   URB   NAT   MOR   FEC</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PNB 0.000 0.006 0.000 0.086 0.114 1.000 0.014</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TMI 0.000 0.000 0.001 0.006 0.000 0.170 0.000</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ESP 0.000 0.000 0.000 0.027 0.086 1.000 0.013</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; URB 0.010 0.000 0.002 0.000 0.086 0.254 0.045</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NAT 0.019 0.000 0.011 0.009 0.000 0.103 0.000</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; MOR 0.552 0.040 0.738 0.085 0.015 0.000 0.170</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; FEC 0.001 0.000 0.001 0.004 0.000 0.034 0.000</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On peut aussi faire une jolie matrice colorée avec des tests de signficativité sous forme d’étoiles</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corPlot</span>(tab, <span class="at">stars=</span><span class="cn">TRUE</span>, <span class="at">diag=</span><span class="cn">FALSE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="utilisation-du-package-factominer" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="utilisation-du-package-factominer"><span class="header-section-number">4.4.6</span> Utilisation du package factoMineR</h3>
+<p>Si on veut voir les axes factoriels d’une analyse en composante principales on utilise la fonction <em>PCA()</em> de <strong>FactoMineR</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>monacp<span class="ot">&lt;-</span><span class="fu">PCA</span>(tab, <span class="at">graph=</span><span class="cn">FALSE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On pourra ensuite visualiser la corrélation des variables avec les principaux axes factoriels et les coordonnées des individus sur ceux-ci.</p>
+<section id="corrélation-des-variables-avec-les-axes-factoriels" class="level4" data-number="4.4.6.1">
+<h4 data-number="4.4.6.1" class="anchored" data-anchor-id="corrélation-des-variables-avec-les-axes-factoriels"><span class="header-section-number">4.4.6.1</span> Corrélation des variables avec les axes factoriels</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.PCA</span>(monacp,<span class="at">choix =</span> <span class="st">"varcor"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="coordonnées-des-individus-sur-les-axes-factoriels" class="level4" data-number="4.4.6.2">
+<h4 data-number="4.4.6.2" class="anchored" data-anchor-id="coordonnées-des-individus-sur-les-axes-factoriels"><span class="header-section-number">4.4.6.2</span> Coordonnées des individus sur les axes factoriels</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.PCA</span>(monacp,<span class="at">choix =</span> <span class="st">"ind"</span>,)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="11-Corrélation_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-Base.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R-Base</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./12-Régression.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Régression simple</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script src="js/tidyverse.js"></script>
+
+
+
+</body></html>

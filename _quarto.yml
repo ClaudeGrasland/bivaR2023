@@ -32,8 +32,11 @@ book:
         - 01-PremierPas.qmd   
         - 02-OfficeKiller.qmd
         - 03-Base.qmd
-        
-    - part: "Introduction au tidyverse"
+    - part: "Statistique bivariée I : Y quanti"
+      chapters:        
+        - 11-Corrélation.qmd
+        - 12-Régression.qmd
+        - 13-Anova.qmd
     - part: "Aller plus loin"
 
   appendices:
