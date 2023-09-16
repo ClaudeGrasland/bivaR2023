@@ -37,10 +37,18 @@ book:
         - 11-Corrélation.qmd
         - 12-Régression.qmd
         - 13-Anova.qmd
+    - part: "Statistique bivariée II : Y quali"
+      chapters:        
+        - 21-Tabcont.qmd
+    - part: "Représentations graphiques"
+      chapters:        
+        - 31-GraphBase.qmd
+        - 32-Ggplot2.qmd
+        
     - part: "Aller plus loin"
 
   appendices:
-      - 22-ressources.qmd  
+      - XX-ressources.qmd  
 
 format:
   bookup-html:

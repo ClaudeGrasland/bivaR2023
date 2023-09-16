@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction à la statistique bivariée avec R - 8&nbsp; Graphiques avec R-Base</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./32-Ggplot2.html" rel="next">
+<link href="./21-Tabcont.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/bookup_fonts_embed-0.0/fonts-download.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="css/tidyverse.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./31-GraphBase.html">Représentations graphiques</a></li><li class="breadcrumb-item"><a href="./31-GraphBase.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graphiques avec R-Base</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction à la statistique bivariée avec R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/ClaudeGrasland/bivar2023/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./introduction_R_bivarié.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./introduction_R_bivarié.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Basculer en mode lecteur">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">À propos de ce document</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Introduction à R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-PremierPas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Premier pas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-OfficeKiller.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Office Killer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R-Base</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Statistique bivariée I : Y quanti</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Corrélation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Corrélation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Régression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Régression simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analyse de variance</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Statistique bivariée II : Y quali</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Tabcont.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tableau de contingence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Représentations graphiques</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31-GraphBase.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graphiques avec R-Base</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32-Ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Graphiques avec ggplot2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Aller plus loin</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Annexes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./XX-ressources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Ressources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#pourquoi-sembêter-à-utiliser-les-fonctions-primitives-de-r-pour-faire-des-graphiques" id="toc-pourquoi-sembêter-à-utiliser-les-fonctions-primitives-de-r-pour-faire-des-graphiques" class="nav-link" data-scroll-target="#pourquoi-sembêter-à-utiliser-les-fonctions-primitives-de-r-pour-faire-des-graphiques"><span class="header-section-number">8.1.1</span> Pourquoi s’em…bêter à utiliser les fonctions primitives de R pour faire des graphiques ?</a></li>
+  <li><a href="#trois-étapes-pour-créer-un-graphique" id="toc-trois-étapes-pour-créer-un-graphique" class="nav-link" data-scroll-target="#trois-étapes-pour-créer-un-graphique"><span class="header-section-number">8.1.2</span> Trois étapes pour créer un graphique</a></li>
+  </ul></li>
+  <li><a href="#préparation-des-données" id="toc-préparation-des-données" class="nav-link" data-scroll-target="#préparation-des-données"><span class="header-section-number">8.2</span> Préparation des données</a>
+  <ul class="collapse">
+  <li><a href="#chargement-du-fichier" id="toc-chargement-du-fichier" class="nav-link" data-scroll-target="#chargement-du-fichier"><span class="header-section-number">8.2.1</span> Chargement du fichier</a></li>
+  <li><a href="#contenu-du-fichier" id="toc-contenu-du-fichier" class="nav-link" data-scroll-target="#contenu-du-fichier"><span class="header-section-number">8.2.2</span> Contenu du fichier</a></li>
+  <li><a href="#dictionaire-des-variables" id="toc-dictionaire-des-variables" class="nav-link" data-scroll-target="#dictionaire-des-variables"><span class="header-section-number">8.2.3</span> Dictionaire des variables</a></li>
+  <li><a href="#recodage-des-variables" id="toc-recodage-des-variables" class="nav-link" data-scroll-target="#recodage-des-variables"><span class="header-section-number">8.2.4</span> Recodage des variables</a></li>
+  <li><a href="#ajout-dune-nouvelle-variable" id="toc-ajout-dune-nouvelle-variable" class="nav-link" data-scroll-target="#ajout-dune-nouvelle-variable"><span class="header-section-number">8.2.5</span> Ajout d’une nouvelle variable</a></li>
+  <li><a href="#résumé-de-lensemble-du-tableau" id="toc-résumé-de-lensemble-du-tableau" class="nav-link" data-scroll-target="#résumé-de-lensemble-du-tableau"><span class="header-section-number">8.2.6</span> Résumé de l’ensemble du tableau</a></li>
+  <li><a href="#la-fonction-par" id="toc-la-fonction-par" class="nav-link" data-scroll-target="#la-fonction-par"><span class="header-section-number">8.2.7</span> La fonction par()</a></li>
+  <li><a href="#fonction-par-mfrow" id="toc-fonction-par-mfrow" class="nav-link" data-scroll-target="#fonction-par-mfrow"><span class="header-section-number">8.2.8</span> fonction par() + mfrow</a></li>
+  <li><a href="#autres-paramètres-de-par" id="toc-autres-paramètres-de-par" class="nav-link" data-scroll-target="#autres-paramètres-de-par"><span class="header-section-number">8.2.9</span> Autres paramètres de par()</a></li>
+  <li><a href="#la-fonction-layout" id="toc-la-fonction-layout" class="nav-link" data-scroll-target="#la-fonction-layout"><span class="header-section-number">8.2.10</span> La fonction layout()</a></li>
+  </ul></li>
+  <li><a href="#la-fonction-génératrice-plot" id="toc-la-fonction-génératrice-plot" class="nav-link" data-scroll-target="#la-fonction-génératrice-plot"><span class="header-section-number">8.3</span> La fonction génératrice plot()</a>
+  <ul class="collapse">
+  <li><a href="#une-super-fonction" id="toc-une-super-fonction" class="nav-link" data-scroll-target="#une-super-fonction"><span class="header-section-number">8.3.1</span> Une super-fonction</a></li>
+  <li><a href="#plotx-x-de-type-factor" id="toc-plotx-x-de-type-factor" class="nav-link" data-scroll-target="#plotx-x-de-type-factor"><span class="header-section-number">8.3.2</span> plot(X) / X de type factor</a></li>
+  <li><a href="#plotx-x-de-type-numeric" id="toc-plotx-x-de-type-numeric" class="nav-link" data-scroll-target="#plotx-x-de-type-numeric"><span class="header-section-number">8.3.3</span> plot(X) / X de type numeric</a></li>
+  <li><a href="#plotxy-x-et-y-de-type-factor" id="toc-plotxy-x-et-y-de-type-factor" class="nav-link" data-scroll-target="#plotxy-x-et-y-de-type-factor"><span class="header-section-number">8.3.4</span> plot(X,Y) / X et Y de type factor</a></li>
+  <li><a href="#plotxy-x-et-y-de-type-numerique" id="toc-plotxy-x-et-y-de-type-numerique" class="nav-link" data-scroll-target="#plotxy-x-et-y-de-type-numerique"><span class="header-section-number">8.3.5</span> plot(X,Y) / X et Y de type numerique</a></li>
+  <li><a href="#plotxy-x-de-type-factor-et-y-de-type-numerique" id="toc-plotxy-x-de-type-factor-et-y-de-type-numerique" class="nav-link" data-scroll-target="#plotxy-x-de-type-factor-et-y-de-type-numerique"><span class="header-section-number">8.3.6</span> plot(X,Y) / X de type factor et Y de type numerique</a></li>
+  <li><a href="#plotxy-x-de-type-factor-et-y-de-type-numerique-1" id="toc-plotxy-x-de-type-factor-et-y-de-type-numerique-1" class="nav-link" data-scroll-target="#plotxy-x-de-type-factor-et-y-de-type-numerique-1"><span class="header-section-number">8.3.7</span> plot(X,Y) / X de type factor et Y de type numerique</a></li>
+  <li><a href="#plotmodel-model-lmyx" id="toc-plotmodel-model-lmyx" class="nav-link" data-scroll-target="#plotmodel-model-lmyx"><span class="header-section-number">8.3.8</span> plot(model) / model = lm(Y~X)</a></li>
+  </ul></li>
+  <li><a href="#les-autres-fonctions-génératrice" id="toc-les-autres-fonctions-génératrice" class="nav-link" data-scroll-target="#les-autres-fonctions-génératrice"><span class="header-section-number">8.4</span> Les autres fonctions génératrice</a>
+  <ul class="collapse">
+  <li><a href="#la-fonction-barplot" id="toc-la-fonction-barplot" class="nav-link" data-scroll-target="#la-fonction-barplot"><span class="header-section-number">8.4.1</span> La fonction barplot()</a></li>
+  <li><a href="#les-fonctions-hist-et-density" id="toc-les-fonctions-hist-et-density" class="nav-link" data-scroll-target="#les-fonctions-hist-et-density"><span class="header-section-number">8.4.2</span> Les fonctions hist() et density()</a></li>
+  </ul></li>
+  <li><a href="#les-fonctions-complémentaires" id="toc-les-fonctions-complémentaires" class="nav-link" data-scroll-target="#les-fonctions-complémentaires"><span class="header-section-number">8.5</span> Les fonctions complémentaires</a>
+  <ul class="collapse">
+  <li><a href="#exemple-dun-nuage-de-points-xy" id="toc-exemple-dun-nuage-de-points-xy" class="nav-link" data-scroll-target="#exemple-dun-nuage-de-points-xy"><span class="header-section-number">8.5.1</span> Exemple d’un nuage de points (X,Y)</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8.6</span> Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#on-peut-faire-de-beaux-graphiques-avec-r-base" id="toc-on-peut-faire-de-beaux-graphiques-avec-r-base" class="nav-link" data-scroll-target="#on-peut-faire-de-beaux-graphiques-avec-r-base"><span class="header-section-number">8.6.1</span> On peut faire de beaux graphiques avec R-Base …</a></li>
+  <li><a href="#on-peut-utiliser-des-packages-spécialisés" id="toc-on-peut-utiliser-des-packages-spécialisés" class="nav-link" data-scroll-target="#on-peut-utiliser-des-packages-spécialisés"><span class="header-section-number">8.6.2</span> On peut utiliser des packages spécialisés</a></li>
+  <li><a href="#ggally-un-package-spécialisé-dans-la-statistique-bivariée" id="toc-ggally-un-package-spécialisé-dans-la-statistique-bivariée" class="nav-link" data-scroll-target="#ggally-un-package-spécialisé-dans-la-statistique-bivariée"><span class="header-section-number">8.6.3</span> ggally : un package spécialisé dans la statistique bivariée</a></li>
+  <li><a href="#ggplot2-un-package-graphique-universel" id="toc-ggplot2-un-package-graphique-universel" class="nav-link" data-scroll-target="#ggplot2-un-package-graphique-universel"><span class="header-section-number">8.6.4</span> ggplot2 : un package graphique universel ?</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/bivar2023/edit/main/31-GraphBase.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graphiques avec R-Base</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="resources/figures/chap3_intro.jpg" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo8.zip">dossier exo8</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo8.Rproj</code> dans Rstudio.</li>
+</ul>
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<section id="pourquoi-sembêter-à-utiliser-les-fonctions-primitives-de-r-pour-faire-des-graphiques" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="pourquoi-sembêter-à-utiliser-les-fonctions-primitives-de-r-pour-faire-des-graphiques"><span class="header-section-number">8.1.1</span> Pourquoi s’em…bêter à utiliser les fonctions primitives de R pour faire des graphiques ?</h3>
+<p>On peut se demander si cela vaut la peine d’utiliser <strong>R-base</strong> pour faire des graphiques. En effet R propose maintenant des packages produisant facilement de très jolis graphiques statiques (<strong>ggplot2</strong>) ou dynamiques (<strong>plotly</strong>). La réponse est cependant oui car :</p>
+<ul>
+<li>il faut pouvoir relire et améliorer des programmes anciens</li>
+<li>les primitives graphiques de R permettent de créer ses propres applications</li>
+<li>les packages ggplot2 et plotly reprennent des concepts de R-base</li>
+</ul>
+<p>Et la plus raison la plus importante :</p>
+<ul>
+<li>c’est l’occasion d’apprendre à <strong>créer ses propres fonctions</strong> et ainsi de meiiux apprécier les qualités et les défauts de celles que l’on trouve dans les packages qu’on utilise.</li>
+</ul>
+</section>
+<section id="trois-étapes-pour-créer-un-graphique" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="trois-étapes-pour-créer-un-graphique"><span class="header-section-number">8.1.2</span> Trois étapes pour créer un graphique</h3>
+<p>Comme indiqué par Sophie Baillargeon dans son excellent <a href="https://stt4230.rbind.io/communication_resultats/graphiques_r/">cours de R de l’Université de Laval (Québec)</a> , un programme pour créer un graphique avec le système graphique de base en R se décompose typiquement en 3 étapes utilisant des fonctions différentes :</p>
+<ul>
+<li><strong>Etape 1 : La configuration des paramètres graphiques généraux (facultatif) :</strong>
+<ul>
+<li>énoncé <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/par.html"><code>par</code></a> ou <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/layout.html"><code>layout</code></a>.</li>
+</ul></li>
+<li><strong>Etape 2 : L’initialisation d’un graphique (obligatoire) :</strong>
+<ul>
+<li>fonction de base : <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html"><code>plot</code></a> (choisit un graphique pertinent à produire selon ce qu’elle reçoit en entrée),</li>
+<li>ou fonction pour un type spécifique graphiques : <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/pairs.html"><code>pairs</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/matplot.html"><code>matplot</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/pie.html"><code>pie</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/dotchart.html"><code>barplot</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/mosaicplot.html"><code>dotchart</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/mosaicplot.html"><code>mosaicplot</code></a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/hist.html"><code>hist</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html"><code>boxplot</code></a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/stats/html/qqnorm.html"><code>qqnorm</code></a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/stats/html/qqnorm.html"><code>qqplot</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/curve.html"><code>curve</code></a>, etc.</li>
+</ul></li>
+<li><strong>Etape 3. L’ajout séquentiel d’éléments au graphique (facultatif) :</strong>
+<ul>
+<li>fonctions d’ajouts à un graphique déjà initialisé :
+<ul>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html"><code>points</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/matplot.html"><code>matpoints</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/lines.html"><code>lines</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/matplot.html"><code>matlines</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/abline.html"><code>abline</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/segments.html"><code>segments</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/arrows.html"><code>arrows</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/rect.html"><code>rect</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/polygon.html"><code>polygon</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/legend.html"><code>legend</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/text.html"><code>text</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/mtext.html"><code>mtext</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/title.html"><code>title</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/axis.html"><code>axis</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/box.html"><code>box</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/qqnorm.html"><code>qqline</code></a>, etc.;</li>
+<li><code>matplot</code>, <code>barplot</code>, <code>hist</code>, <code>boxplot</code>, <code>curve</code> avec l’argument <code>add = TRUE</code>.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="préparation-des-données" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="préparation-des-données"><span class="header-section-number">8.2</span> Préparation des données</h2>
+<section id="chargement-du-fichier" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="chargement-du-fichier"><span class="header-section-number">8.2.1</span> Chargement du fichier</h3>
+<p>On charge un fichier statistique appelé <em>tips.csv</em> où les séparateurs sont des points-virgules et les décimales des points.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>don<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"resources/data/tips/tips.csv"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">sep =</span> <span class="st">";"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">header =</span> T)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(don)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  IDEN TOTBILL  TIP SEX SMOKER DAY TIME SIZE
+1 R001   16.99 1.01   1      0   6    1    2
+2 R002   10.34 1.66   0      0   6    1    3
+3 R003   21.01 3.50   0      0   6    1    3
+4 R004   23.68 3.31   0      0   6    1    2
+5 R005   24.59 3.61   1      0   6    1    4
+6 R006   25.29 4.71   0      0   6    1    4</code></pre>
+</div>
+</div>
+</section>
+<section id="contenu-du-fichier" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="contenu-du-fichier"><span class="header-section-number">8.2.2</span> Contenu du fichier</h3>
+<p>Ce dossier contient les pourboires (<em>tips</em> en anglais, d’où le nom du fichier) d’un serveur dans un restaurant américain aux débuts des années 1990. Le restaurant était dans un centre commercial. Il y avait une zone fumeurs et une zone non fumeurs.Les données indiquent le prix du repas, le pourboire, le sexe de la personne qui a payé et donné le pourboire, si c’était dans la zone fumeurs ou non, le jour où le repas a été pris, si c’était en journée ou en soirée et enfin, le nombre de convives.</p>
+<p><strong>Sources</strong> : Ces données sont disponibles dans le package R nommé rggobi et sont décrites dans l’ouvrage de Cook et Swayne intitulé <em>Interactive and Dynamic Graphics for Data Analysi</em>s. Elles font partie des données d’exemple du livre de Bryant et Smith dont la première édition est parue en 1995 dont le titre est <em>Practical Data Analysis: Case Studies in Business Statistics</em>.</p>
+</section>
+<section id="dictionaire-des-variables" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="dictionaire-des-variables"><span class="header-section-number">8.2.3</span> Dictionaire des variables</h3>
+<ul>
+<li><strong>IDEN</strong> : identifiant du repas</li>
+<li><strong>TOTBILL</strong> : prix du repas (en dollars des années 1990)</li>
+<li><strong>TIP</strong> : pourboire (en dollars des années 1990)</li>
+<li><strong>SEX</strong> : sexe de la personne qui a payé (0 = Homme, 1 = Femme)</li>
+<li><strong>SMOKER</strong> : la personne qui a payé est non-fumeur (O) ou fumeur (1)</li>
+<li><strong>DAY</strong> : jour de la semaine (1 = dimanche, 2 = lundi, 3 = mardi, …)</li>
+<li><strong>TIME</strong> : repas pris en journée (0) ou le soir (1)</li>
+<li><strong>SIZE</strong> : nombre de convives</li>
+</ul>
+</section>
+<section id="recodage-des-variables" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="recodage-des-variables"><span class="header-section-number">8.2.4</span> Recodage des variables</h3>
+<p>Le type de plusieurs variables est incorrect. On transforme les codes numériques en facteur et on recode les niveaux en français :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>IDEN<span class="ot">&lt;-</span><span class="fu">as.character</span>(don<span class="sc">$</span>IDEN)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>SEX<span class="ot">&lt;-</span><span class="fu">as.factor</span>(don<span class="sc">$</span>SEX)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don<span class="sc">$</span>SEX)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Homme"</span>,<span class="st">"Femme"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>SMOKER<span class="ot">&lt;-</span><span class="fu">as.factor</span>(don<span class="sc">$</span>SMOKER)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don<span class="sc">$</span>SMOKER)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non fumeur"</span>, <span class="st">"Fumeur"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>DAY<span class="ot">&lt;-</span><span class="fu">as.factor</span>(don<span class="sc">$</span>DAY)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don<span class="sc">$</span>DAY)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Mercredi"</span>,<span class="st">"Jeudi"</span>,<span class="st">"Vendredi"</span>,<span class="st">"Samedi"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>TIME<span class="ot">&lt;-</span><span class="fu">as.factor</span>(don<span class="sc">$</span>TIME)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don<span class="sc">$</span>TIME)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Journée"</span>,<span class="st">"Soirée"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ajout-dune-nouvelle-variable" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="ajout-dune-nouvelle-variable"><span class="header-section-number">8.2.5</span> Ajout d’une nouvelle variable</h3>
+<p>On crée la variable PCT qui est le rapport entre le pourboire (TIP) et le prix total (TOTBILL) du repas exprimé en pourcentage.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>don<span class="sc">$</span>PCT<span class="ot">&lt;-</span><span class="dv">100</span><span class="sc">*</span>don<span class="sc">$</span>TIP<span class="sc">/</span>don<span class="sc">$</span>TOTBILL</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="résumé-de-lensemble-du-tableau" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="résumé-de-lensemble-du-tableau"><span class="header-section-number">8.2.6</span> Résumé de l’ensemble du tableau</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(don)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     IDEN              TOTBILL           TIP            SEX     
+ Length:244         Min.   : 3.07   Min.   : 1.000   Homme:157  
+ Class :character   1st Qu.:13.35   1st Qu.: 2.000   Femme: 87  
+ Mode  :character   Median :17.80   Median : 2.900              
+                    Mean   :19.79   Mean   : 2.998              
+                    3rd Qu.:24.13   3rd Qu.: 3.562              
+                    Max.   :50.81   Max.   :10.000              
+        SMOKER          DAY          TIME          SIZE           PCT        
+ Non fumeur:151   Mercredi:62   Journée: 68   Min.   :1.00   Min.   : 3.564  
+ Fumeur    : 93   Jeudi   :19   Soirée :176   1st Qu.:2.00   1st Qu.:12.913  
+                  Vendredi:87                 Median :2.00   Median :15.477  
+                  Samedi  :76                 Mean   :2.57   Mean   :16.080  
+                                              3rd Qu.:3.00   3rd Qu.:19.148  
+                                              Max.   :6.00   Max.   :71.034  </code></pre>
+</div>
+</div>
+<p>##.Paramètres généraux et disposition des graphiques</p>
+</section>
+<section id="la-fonction-par" class="level3" data-number="8.2.7">
+<h3 data-number="8.2.7" class="anchored" data-anchor-id="la-fonction-par"><span class="header-section-number">8.2.7</span> La fonction par()</h3>
+<p>La fonction <strong>par()</strong> ne produit pas directement de graphique mais permet de :</p>
+<ul>
+<li>définir la disposition de plusieurs graphiques</li>
+<li>spécifier la largeur des marges</li>
+<li>définir des paramètres généraux valables pour tous les graphiques</li>
+</ul>
+<p>Elle se comporte donc comme une <strong>feuille de style</strong> ou un <strong>CSS</strong>. Il est de ce fait prudent de stocker les paramètres d’origine avant de les modifier.</p>
+<p><strong>Il y a 66 paramètres différents …</strong> Il est prudent de les stocker dans leur configuration d’origine avant de les modifier.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stockage des paramètres d'origine</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>old<span class="ot">&lt;-</span> <span class="fu">par</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des paramètres d'origine</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(old)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$xlog
+[1] FALSE
+
+$ylog
+[1] FALSE
+
+$adj
+[1] 0.5
+
+$ann
+[1] TRUE
+
+$ask
+[1] FALSE
+
+$bg
+[1] "white"</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-par-mfrow" class="level3" data-number="8.2.8">
+<h3 data-number="8.2.8" class="anchored" data-anchor-id="fonction-par-mfrow"><span class="header-section-number">8.2.8</span> fonction par() + mfrow</h3>
+<p>Supposons que l’on veuille disposer <strong>verticalement</strong> une boxplot et un histogramme de la variable PCT. On va utiliser l’instruction <strong>mfrow=c(2,1)</strong> pour placerles deux figures suivantes sur des lignes séparées :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT, <span class="at">main=</span><span class="st">"Histogramme"</span>, <span class="at">xlab=</span><span class="st">"Pourboires (%)"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>PCT, <span class="at">horizontal=</span>T, <span class="at">main=</span><span class="st">"Boxplot"</span>, <span class="at">xlab =</span> <span class="st">"Pourboires (%)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Si l’on préfère une disposition <strong>horizontale</strong> on modifie le paramètre mfrow :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT, <span class="at">main=</span><span class="st">"Histogramme"</span>, <span class="at">xlab=</span><span class="st">"Pourboires (%)"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>PCT, <span class="at">horizontal=</span>T, <span class="at">main=</span><span class="st">"Boxplot"</span>, <span class="at">xlab =</span> <span class="st">"Pourboires (%)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="autres-paramètres-de-par" class="level3" data-number="8.2.9">
+<h3 data-number="8.2.9" class="anchored" data-anchor-id="autres-paramètres-de-par"><span class="header-section-number">8.2.9</span> Autres paramètres de par()</h3>
+<p>On peut ajouter toute une série d’autres paramètres par défaut. Par exemple, pour faire un graphique sur fonds noir (<strong>bg</strong>) à traits blancs (<strong>fg</strong>), puis régler la taille (<strong>cex</strong>) et la couleur (<strong>col</strong>) des différents textes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg=</span><span class="st">"black"</span>, <span class="at">fg=</span><span class="st">"white"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex.main =</span> <span class="dv">1</span>, <span class="at">col.main =</span> <span class="st">"gray80"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex.lab =</span>  <span class="fl">0.8</span>, <span class="at">col.lab =</span> <span class="st">"orange"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex.axis =</span> <span class="fl">0.6</span>, <span class="at">col.axis =</span> <span class="st">"red"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT, <span class="at">main=</span><span class="st">"Histogramme"</span>, <span class="at">xlab=</span><span class="st">"Pourboires (%)"</span>,<span class="at">col=</span><span class="st">"lightyellow"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>PCT, <span class="at">horizontal=</span>T, <span class="at">main=</span><span class="st">"Boxplot"</span>, <span class="at">xlab =</span> <span class="st">"Pourboires (%)"</span>,<span class="at">col=</span><span class="st">"lightyellow"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="la-fonction-layout" class="level3" data-number="8.2.10">
+<h3 data-number="8.2.10" class="anchored" data-anchor-id="la-fonction-layout"><span class="header-section-number">8.2.10</span> La fonction layout()</h3>
+<p>La fonction <strong>layout()</strong> permet une gestion plus précise de la disposition de différents graphiques sur une même fenêtre que la fonction <strong>par()</strong>. Sa syntaxe semble difficile mais elle est plus simple si on crée la matrice d’allocation des figures avec <strong>rbind()</strong> ce qui permet de visualiser la position de chaque figure facilement</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Divise la figure en 2 lignes et 2 colonnes</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## alloue la figure 1 à toute la première ligne </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## alloue les figures 2 et 3 à la deuxième ligne</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>mat<span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(mat)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>PCT<span class="sc">~</span>don<span class="sc">$</span>SEX, <span class="at">horizontal=</span>T) <span class="co"># Figure 1</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT)                          <span class="co"># Figure 2</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>SEX)                          <span class="co"># Figure 3</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On peut préciser la longueur et la largeur des différentes lignes et colonnes avec <strong>widths</strong> et <strong>heights</strong> . On peut visualiser le résultat de la mise en page avec <strong>layout.show()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mat<span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>nf <span class="ot">&lt;-</span> <span class="fu">layout</span>(mat, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>), <span class="at">respect=</span>T)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">layout.show</span>(nf)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On peut ensuite remplir le layout avec des figures, par exemple un plot et deux boxplots</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mat<span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(mat, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>), <span class="at">respect=</span><span class="cn">TRUE</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>PCT,<span class="at">ann =</span> F)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>PCT,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="st">"red"</span>,<span class="at">cex=</span><span class="fl">0.6</span>,<span class="at">xlab=</span><span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(don<span class="sc">$</span>TOTBILL, <span class="at">horizontal=</span>T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="la-fonction-génératrice-plot" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="la-fonction-génératrice-plot"><span class="header-section-number">8.3</span> La fonction génératrice plot()</h2>
+<section id="une-super-fonction" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="une-super-fonction"><span class="header-section-number">8.3.1</span> Une super-fonction</h3>
+<p>L’instruction <strong>plot()</strong> n’est pas une fonction graphique comme les autres car elle va renvoyer des résultats différents selon les circonstances. En d’autres termes c’est un outil de <strong>programmation orienté objet</strong> qui va adapter le résultat à la nature des <strong>variables</strong> et plus généralement des <strong>objets</strong> qui lui sont fournis en entrée.</p>
+<ul>
+<li><p>Par exemple, un plot() d’une variable de <strong>type factor</strong> va donner le même résultat que <strong>barplot()</strong> appliqué à la table de dénombrement de cette variable</p></li>
+<li><p>Autre exemple, la fonction <strong>lm()</strong> génère un objet complexe (modèle de régression linéaire). Lorsque l’on effectue un plot de cet objet, on utilise en fait une fonction <strong>plot.lm()</strong> qui fournit les diagnostics de la régression.</p></li>
+</ul>
+</section>
+<section id="plotx-x-de-type-factor" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="plotx-x-de-type-factor"><span class="header-section-number">8.3.2</span> plot(X) / X de type factor</h3>
+<p>La fonction plot() est pratique pour visualiser une variable de <em>type factor</em> à l’aide d’un <strong>barplot()</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span>don<span class="sc">$</span>SEX</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X, <span class="at">main=</span><span class="st">"plot(x=factor)"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(X), <span class="at">main=</span><span class="st">"barplot(table(x=factor))"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotx-x-de-type-numeric" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="plotx-x-de-type-numeric"><span class="header-section-number">8.3.3</span> plot(X) / X de type numeric</h3>
+<p>Mais elle est sans intérêt pour une variable de <em>type numérique</em>, sauf si on la trie avec <strong>sort()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TIP, <span class="at">main=</span><span class="st">"Sans intérêt ..."</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sort</span>(don<span class="sc">$</span>TIP),<span class="at">main=</span><span class="st">"Un peu mieux..."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotxy-x-et-y-de-type-factor" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="plotxy-x-et-y-de-type-factor"><span class="header-section-number">8.3.4</span> plot(X,Y) / X et Y de type factor</h3>
+<p>Plot renvoie un graphique de type <strong>mosaicplot()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>SEX,don<span class="sc">$</span>TIME)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TIME,don<span class="sc">$</span>SEX)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotxy-x-et-y-de-type-numerique" class="level3" data-number="8.3.5">
+<h3 data-number="8.3.5" class="anchored" data-anchor-id="plotxy-x-et-y-de-type-numerique"><span class="header-section-number">8.3.5</span> plot(X,Y) / X et Y de type numerique</h3>
+<p>Plot renvoie un graphique de type <strong>scatterplot()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotxy-x-de-type-factor-et-y-de-type-numerique" class="level3" data-number="8.3.6">
+<h3 data-number="8.3.6" class="anchored" data-anchor-id="plotxy-x-de-type-factor-et-y-de-type-numerique"><span class="header-section-number">8.3.6</span> plot(X,Y) / X de type factor et Y de type numerique</h3>
+<p>Plot renvoie un graphique de type <strong>boxplot()</strong> si le factor est en premier,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>SEX,don<span class="sc">$</span>TIP, <span class="at">horizontal=</span>T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotxy-x-de-type-factor-et-y-de-type-numerique-1" class="level3" data-number="8.3.7">
+<h3 data-number="8.3.7" class="anchored" data-anchor-id="plotxy-x-de-type-factor-et-y-de-type-numerique-1"><span class="header-section-number">8.3.7</span> plot(X,Y) / X de type factor et Y de type numerique</h3>
+<p>Plot renvoie un diagramme de faible intérêt si la variable factor est en second. Il s’agit en termes statistiques d’un ensemble de <strong>diagrammes de distribution</strong> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TIP,don<span class="sc">$</span>SEX)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotmodel-model-lmyx" class="level3" data-number="8.3.8">
+<h3 data-number="8.3.8" class="anchored" data-anchor-id="plotmodel-model-lmyx"><span class="header-section-number">8.3.8</span> plot(model) / model = lm(Y~X)</h3>
+<p>L’appplication de plot à un modèle linéaire issu de <strong>lm()</strong> permet de générer 6 graphiques différents (<strong>Cf. cours sur la régression</strong>). Par défaut, R affiche les graphiques n° 1,2,3,5 (mais je préfère le n°4 …)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(don<span class="sc">$</span>PCT<span class="sc">~</span>don<span class="sc">$</span>TOTBILL)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Le graphique n°1 vérifie si les résidus sont réguliers</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="dv">1</span>, <span class="at">main=</span> <span class="st">"Absence d'autocorrélation ?"</span>,<span class="at">labels.id =</span> don<span class="sc">$</span>IDEN)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Le graphique n°2 vérifie si les résidus sont distribués de façon gaussienne</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="dv">2</span>, <span class="at">main=</span> <span class="st">"Normalité ?"</span>,<span class="at">labels.id =</span> don<span class="sc">$</span>IDEN)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Le graphique n°3 vérifie si la variance des résidus est constante</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="dv">3</span>, <span class="at">main=</span> <span class="st">"Homogénéité ?"</span>,<span class="at">labels.id =</span> don<span class="sc">$</span>IDEN)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Le graphique n°4 vérifie si des valeurs exceptionnelles existent à l’aide de la distance de Cook.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,<span class="dv">4</span>, <span class="at">main=</span> <span class="st">"Valeurs exceptionnelles ?"</span>,<span class="at">labels.id =</span> don<span class="sc">$</span>IDEN)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="les-autres-fonctions-génératrice" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="les-autres-fonctions-génératrice"><span class="header-section-number">8.4</span> Les autres fonctions génératrice</h2>
+<p>On peut créer un graphque avec <strong>plot()</strong> mais aussi avec d’autres fonctions dont le nom se termine en général par —plot pour bien rappeler leur rôle de <strong>création</strong> du graphique.</p>
+<ul>
+<li>barplot</li>
+<li>boxplot</li>
+<li>hist</li>
+<li>density</li>
+<li>pie</li>
+<li>matplot</li>
+<li>pairs</li>
+<li>mosaicplot</li>
+<li>curve</li>
+<li>…</li>
+</ul>
+<section id="la-fonction-barplot" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="la-fonction-barplot"><span class="header-section-number">8.4.1</span> La fonction barplot()</h3>
+<p>La fonction <strong>barplot()</strong> permett de créer des <strong>diagrammes en barres</strong> qui résultent en général du dénombrement d’une ou deux variable qualitative à l’aide des fonctions <strong>table()</strong> ou <strong>xtabs()</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> <span class="fu">table</span>(don<span class="sc">$</span>DAY)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>mytable</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mercredi    Jeudi Vendredi   Samedi 
+      62       19       87       76 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>myxtabs <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>don<span class="sc">$</span>DAY)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>myxtabs</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>don$DAY
+Mercredi    Jeudi Vendredi   Samedi 
+      62       19       87       76 </code></pre>
+</div>
+</div>
+<p>Cas d’une table à une seule variable :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> <span class="fu">table</span>(don<span class="sc">$</span>DAY), </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"fréquence"</span>, <span class="at">ylab =</span> <span class="st">"jour de la semaine"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Cas d’une table à une deux variables :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> <span class="fu">table</span>(don<span class="sc">$</span>DAY,don<span class="sc">$</span>SEX), </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"fréquence"</span>,  <span class="at">ylab =</span> <span class="st">"jour de la semaine"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Exemple de figure complète avec toute une série de paramètres optionnels placés soit dans barplot(), soit dans par()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex.main =</span> <span class="dv">1</span>, <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">cex.axis =</span><span class="fl">0.8</span>, <span class="at">cex.sub=</span><span class="fl">0.6</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> <span class="fu">table</span>(don<span class="sc">$</span>DAY,don<span class="sc">$</span>SEX),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="at">n=</span><span class="dv">4</span>,<span class="at">alpha =</span> <span class="fl">0.5</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend=</span><span class="cn">TRUE</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"fréquence"</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"jour de la semaine"</span>, </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Qui paye le repas ?"</span>, </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">sub =</span>  <span class="st">"Source : Pourboires de 244 repas dans un restaurant américains au début des années 1990 (Bryant &amp; Smith, 1995)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>On remarque que les hommes paient plus souvent le repas que les femmes le vendredi et surtout le samedi …</p>
+</section>
+<section id="les-fonctions-hist-et-density" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="les-fonctions-hist-et-density"><span class="header-section-number">8.4.2</span> Les fonctions hist() et density()</h3>
+<p>On présente ensemble ces trois fonctions qui sont très complémentaires puisqu’elles permettent l’une et l’autre de créer un histogramme <strong>hist()</strong> et de lui adjoindre avec <strong>lines()</strong> une courbe lissée générée par <strong>density()</strong>. La syntaxe minimale est la suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT, <span class="at">probability =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(don<span class="sc">$</span>PCT))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On peut ensuite préciser les paramètres des trois fonctions façon plus ou moins complexes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex.main =</span> <span class="dv">1</span>, <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">cex.axis =</span><span class="fl">0.8</span>, <span class="at">cex.sub=</span><span class="fl">0.6</span>,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg=</span><span class="st">"black"</span>,<span class="at">fg=</span><span class="st">"white"</span>,<span class="at">col.lab=</span><span class="st">"white"</span>,<span class="at">col.axis=</span><span class="st">"white"</span>,<span class="at">col.main=</span><span class="st">"white"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(don<span class="sc">$</span>PCT, </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">quantile</span>(don<span class="sc">$</span>PCT,<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>,<span class="fl">0.6</span>,<span class="fl">0.7</span>,<span class="fl">0.8</span>,<span class="fl">0.9</span>,<span class="dv">1</span>)), </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">terrain.colors</span>(<span class="at">n=</span><span class="dv">10</span>,<span class="at">alpha=</span><span class="fl">0.8</span>), </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Pourboires en %"</span>, </span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densité de probabilité"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histogramme des pourboires par déciles"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span>  <span class="st">"Source : Pourboires de 244 repas dans un restaurant américains au début des années 1990 (Bryant &amp; Smith, 1995)"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(don<span class="sc">$</span>PCT,<span class="at">bw=</span><span class="dv">2</span>), <span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Et si on doit faire plusieurs figures, on peut créer sa fonction :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>monhist<span class="ot">&lt;-</span><span class="cf">function</span>(var, <span class="at">nomvar=</span><span class="st">"variable"</span>) </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">cex.main =</span> <span class="dv">1</span>, <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">cex.axis =</span><span class="fl">0.8</span>, <span class="at">cex.sub=</span><span class="fl">0.6</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg=</span><span class="st">"black"</span>,<span class="at">fg=</span><span class="st">"white"</span>,<span class="at">col.lab=</span><span class="st">"white"</span>,<span class="at">col.axis=</span><span class="st">"white"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.main=</span><span class="st">"white"</span>, <span class="at">col.sub=</span><span class="st">"white"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(var, </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">unique</span>(<span class="fu">quantile</span>(var,<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>,<span class="fl">0.6</span>,<span class="fl">0.7</span>,<span class="fl">0.8</span>,<span class="fl">0.9</span>,<span class="dv">1</span>))), </span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">terrain.colors</span>(<span class="at">n=</span><span class="dv">10</span>,<span class="at">alpha=</span><span class="fl">0.8</span>), </span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> nomvar, </span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densité de probabilité"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span> <span class="st">"Mon bel histogramme par déciles ..."</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(var), <span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Application de la fonction au prix du repas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monhist</span>(don<span class="sc">$</span>TOTBILL,<span class="st">"Prix du repas (en $)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Application de la fonction aumontant du pourboire</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">monhist</span>(don<span class="sc">$</span>TIP,<span class="st">"Montant du pourboire (en $)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="les-fonctions-complémentaires" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="les-fonctions-complémentaires"><span class="header-section-number">8.5</span> Les fonctions complémentaires</h2>
+<p>Il s’agit de fonctions qui ne peuvent pas s’executer seules mais ne peuvent être lancées qu’après l’execution d’une fonction graphique principale comme plot(), barplot(), hist(), …</p>
+<p>Nous en avons déjà vu un exemple avec la fonction <strong>lines()</strong> qui s’execute après la fonction <strong>hist()</strong> mais ne peut fonctionner seule. Le programme ci-dessous renverra un message d’erreur</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(don<span class="sc">$</span>PCT), <span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd=</span><span class="dv">2</span>) <span class="co"># ne marchera pas</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Error in plot.xy(xy.coords(x, y), type = type, …) : plot.new has not been called yet</strong></p>
+<section id="exemple-dun-nuage-de-points-xy" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="exemple-dun-nuage-de-points-xy"><span class="header-section-number">8.5.1</span> Exemple d’un nuage de points (X,Y)</h3>
+<p>On va prendre comme exemple l’ajout de fonctions graphiques complémentaires à un nuage de point :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">xlab =</span> <span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On neutralise l’affichage des points générés par <strong>plot()</strong> et on les trace avec la fonction <strong>points()</strong> en précisant leur taille (nombre de repas) et leur couleur (hommes ou femmes) et en ajoutant une légende avec <strong>legend()</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="dv">0</span>,<span class="at">xlab =</span> <span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="fu">sqrt</span>(don<span class="sc">$</span>SIZE)<span class="sc">/</span><span class="dv">2</span>, <span class="at">col=</span>don<span class="sc">$</span>SEX, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Hommes"</span>,<span class="st">"Femmes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>), <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On ajoute ensuite une grille avec <strong>grid()</strong> et des droites correspondant à la moyenne de X et à celle de Y avec <strong>abline(v= …)</strong> et <strong>abline(h= …)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="dv">0</span>,<span class="at">xlab =</span> <span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="fu">sqrt</span>(don<span class="sc">$</span>SIZE)<span class="sc">/</span><span class="dv">2</span>, <span class="at">col=</span>don<span class="sc">$</span>SEX, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Hommes"</span>,<span class="st">"Femmes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>), <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(don<span class="sc">$</span>TOTBILL), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(don<span class="sc">$</span>TIP), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On ajoute ensuite une droite de régression avec <strong>abline(model)</strong></p>
+<p>`</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="dv">0</span>,<span class="at">xlab =</span> <span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="fu">sqrt</span>(don<span class="sc">$</span>SIZE)<span class="sc">/</span><span class="dv">2</span>, <span class="at">col=</span>don<span class="sc">$</span>SEX, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Hommes"</span>,<span class="st">"Femmes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>), <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(don<span class="sc">$</span>TOTBILL), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(don<span class="sc">$</span>TIP), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>maregression <span class="ot">&lt;-</span> <span class="fu">lm</span>(don<span class="sc">$</span>TIP<span class="sc">~</span>don<span class="sc">$</span>TOTBILL)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(maregression,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"brown"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On peut aussi ajouter un texte à l’emplacement de son choix avec <strong>text()</strong>. Par exemple, repérer les individus à très forts résidus</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="dv">0</span>,<span class="at">xlab =</span> <span class="st">"Prix du repas"</span>,<span class="at">ylab=</span><span class="st">"Pourboire"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP, <span class="at">cex=</span><span class="fu">sqrt</span>(don<span class="sc">$</span>SIZE)<span class="sc">/</span><span class="dv">2</span>, <span class="at">col=</span>don<span class="sc">$</span>SEX, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Hommes"</span>,<span class="st">"Femmes"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>), <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(don<span class="sc">$</span>TOTBILL), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(don<span class="sc">$</span>TIP), <span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>maregression <span class="ot">&lt;-</span> <span class="fu">lm</span>(don<span class="sc">$</span>TIP<span class="sc">~</span>don<span class="sc">$</span>TOTBILL)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(maregression,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"brown"</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>don2<span class="ot">&lt;-</span>don[<span class="fu">abs</span>(maregression<span class="sc">$</span>residuals)<span class="sc">&gt;</span><span class="dv">2</span>,]</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(don2<span class="sc">$</span>TOTBILL,don2<span class="sc">$</span>TIP,don2<span class="sc">$</span>IDEN,<span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">col=</span><span class="st">"gray30"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.6</span> Conclusion</h2>
+<section id="on-peut-faire-de-beaux-graphiques-avec-r-base" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="on-peut-faire-de-beaux-graphiques-avec-r-base"><span class="header-section-number">8.6.1</span> On peut faire de beaux graphiques avec R-Base …</h3>
+<p>Pour cela il faut bien comprendre les trois étapes :</p>
+<ul>
+<li>Fixer les paramètres graphiques généraux avec <strong>par()</strong> ou <strong>layout()</strong></li>
+<li>Utiliser une fonction génératrice comme <strong>plot()</strong>, <strong>barplot()</strong>, ou <strong>hist()</strong></li>
+<li>Ajouter des fonctions complémentaires comme <strong>lines()</strong>, <strong>points()</strong>, <strong>text()</strong>, <strong>abline()</strong>, …</li>
+</ul>
+<p>Et si on ne veut pas refaire toujours les mêmes codes :</p>
+<ul>
+<li>créer ses propres fonctions en suivant l’exemple de <strong>monhist()</strong></li>
+</ul>
+</section>
+<section id="on-peut-utiliser-des-packages-spécialisés" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="on-peut-utiliser-des-packages-spécialisés"><span class="header-section-number">8.6.2</span> On peut utiliser des packages spécialisés</h3>
+<p>Plusieurs <strong>packages</strong> réalisées à partir des primitives graphiques de R-Base sont spécialisés dans la réalisation d’analyses bivariées et adaptés au type des variables.</p>
+<ul>
+<li><strong>car</strong> : pour croiser deux variables quantitatives</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(don<span class="sc">$</span>TOTBILL,don<span class="sc">$</span>TIP)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><strong>vcd</strong> : pour croiser deux variables qualitatives</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(don<span class="sc">$</span>SEX<span class="sc">~</span>don<span class="sc">$</span>DAY,<span class="at">shade=</span>T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><strong>beanplot</strong> : pour croiser une variable qualitative et une variable quantitative</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(beanplot)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beanplot</span>(don<span class="sc">$</span>PCT<span class="sc">~</span>don<span class="sc">$</span>DAY,<span class="at">shade=</span>T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>log="y" selected</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="31-GraphBase_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="ggally-un-package-spécialisé-dans-la-statistique-bivariée" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="ggally-un-package-spécialisé-dans-la-statistique-bivariée"><span class="header-section-number">8.6.3</span> ggally : un package spécialisé dans la statistique bivariée</h3>
+<p>Le récent package <strong>ggally</strong> est spécialisé dans l’analyse des relations statistiques entre deux variables. Il reprend plusieurs autres packages (notamment ggplot2) pour offrir une solution intégrée avec une syntaxe simple et intuitive.</p>
+</section>
+<section id="ggplot2-un-package-graphique-universel" class="level3" data-number="8.6.4">
+<h3 data-number="8.6.4" class="anchored" data-anchor-id="ggplot2-un-package-graphique-universel"><span class="header-section-number">8.6.4</span> ggplot2 : un package graphique universel ?</h3>
+<p>Fruit des travaux d’Hadley Wickham et de l’équipe de développement de R-Studio, le package <strong>ggplot2</strong> est un élément central de l’univers <strong>tidyverse</strong>, au point de faire désormais partie des “standards” de l’apprentissage de R.</p>
+<p>Mais sa connaissance approfondie est longue et pas toujours intuitive malgré les efforts de ses auteurs. A la longue, les paramètres de base des graphiques ggplot2 peuvent apparaître lassants et il faut donc bien approfondir sa connaissance pour réaliser des figures originales au niveau du style. Sinon c’est un peu le “fast food” de la visualisation : universel mais manquant de goût et d’originalité…</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./21-Tabcont.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tableau de contingence</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./32-Ggplot2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Graphiques avec ggplot2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script src="js/tidyverse.js"></script>
+
+
+
+</body></html>
