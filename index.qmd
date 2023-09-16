@@ -1,0 +1,29 @@
+## À propos de ce document {-}
+
+{{< include _setup.qmd >}}
+
+
+Ce document est une introduction aux méthodes statistiques d'analyse bivariée et aux représentations graphiques avec le logicielR
+
+
+Il est basé sur `r R.Version()[["version.string"]]`.
+
+Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l'adresse :
+
+- [https://github.com/ClaudeGrasland/bivaR2023](https://github.com/ClaudeGrasland/bivaR2023)
+
+Le code source est disponible [sur GitHub](https://github.com/ClaudeGrasland/bivaR2023).
+
+Pour toute suggestion ou correction, il est possible de me contacter [par mail](mailto:claude.grasland@parisgeo.cnrs.fr)
+
+
+## Remerciements {-}
+
+Ce document est rédigé en quarto à partir du modèle proposé par Julien Barnier dans son [Introduction à R et au Tidyverse](https://github.com/juba/tidyverse)
+
+## Licence {-}
+
+Ce document est mis à disposition selon les termes de la [Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+![Licence Creative Commons](resources/icons/license_cc.png)
+

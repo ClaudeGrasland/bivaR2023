@@ -1,0 +1,78 @@
+project:
+  type: book
+  output-dir: doc
+  resources: resources
+
+execute:
+  freeze: auto
+
+lang: fr
+
+book:
+  title: "Introduction à la statistique bivariée avec R"
+  author: "Claude Grasland"
+  date: today
+  language: fr
+  output-file: introduction_R_bivarié
+  downloads: [epub, pdf]
+  url: https://ClaudeGrasland.github.io/bivar2023/
+  repo-url: https://github.com/ClaudeGrasland/bivar2023/
+  repo-actions: [edit]
+  search: true
+  reader-mode: true
+  sidebar:
+    style: "docked"
+    collapse-level: 2
+  chapters:
+    - part: "Introduction"
+      chapters:
+        - index.qmd
+    - part: "Introduction à R"
+      chapters:
+        - 01-PremierPas.qmd   
+        - 02-OfficeKiller.qmd
+        - 03-Base.qmd
+        
+    - part: "Introduction au tidyverse"
+    - part: "Aller plus loin"
+
+  appendices:
+      - 22-ressources.qmd  
+
+format:
+  bookup-html:
+    css: css/tidyverse.css
+    dev: png
+    default-image-extension: svg
+    smooth-scroll: false
+    toc: true
+    toc-title: "Sur cette page"
+    lib-dir: lib
+    include-after-body:
+      text: |
+        <script src="js/tidyverse.js"></script>
+  pdf:
+    documentclass: scrbook
+    classoption: frenchb
+    include-in-header: latex/preamble.tex
+    include-before-body: latex/before_body.tex
+    default-image-extension: pdf
+    prefer-html: false
+    filters:
+      - latex-environment
+    environments:
+      rmdimportant: rmdimportant
+      rmdnote: rmdnote
+      solution-exo: solutionexo
+    urlcolor: blue
+    linkcolor: red
+    geometry:
+      - a4paper
+      - top=30mm
+      - left=20mm
+      - right=20mm
+      - bottom=30mm
+  epub:
+    stylesheet: css/epub.css
+    prefer-html: false
+    default-image-extension: svg
