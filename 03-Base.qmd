@@ -9,7 +9,7 @@ knitr::include_graphics("resources/figures/chap3_intro.jpg")
 ```
 
 
-- **Mise en place** : Télécharger le [dossier exo3](https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo3.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo3.Rproj` dans Rstudio.
+- **Mise en place** : Télécharger le [dossier exo3](https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo3.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo3.Rproj` dans Rstudio.
 
 L'idée pédagogique est d'apprendre directement aux étudiants à programmer en R markdown plutôt qu'en R. Pourquoi ? Parce qu'ainsi ils vont simultanément :
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction à la statistique bivariée avec R - 5&nbsp; Régression simple</title>
+<title>Introduction à la statistique avec R - 5&nbsp; Régression simple</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,9 +130,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction à la statistique bivariée avec R</a> 
+      <a href="./">Introduction à la statistique avec R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/ClaudeGrasland/bivar2023/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/ClaudeGrasland/startR/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Introduction à R</span></a>
+ <span class="menu-text">Introduction à R et R Studio</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Basculer la section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#modèle-puissance-r2-83" id="toc-modèle-puissance-r2-83" class="nav-link" data-scroll-target="#modèle-puissance-r2-83"><span class="header-section-number">5.5.4</span> Modèle puissance (R2 = 83%)</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/bivar2023/edit/main/12-Régression.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/startR/edit/main/12-Régression.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo5.zip">dossier exo5</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo5.Rproj</code> dans Rstudio.</li>
+<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo5.zip">dossier exo5</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo5.Rproj</code> dans Rstudio.</li>
 </ul>
 <section id="préparation-des-données" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="préparation-des-données"><span class="header-section-number">5.1</span> Préparation des données</h2>
@@ -777,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">durbinWatsonTest</span>(monmodel)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  lag Autocorrelation D-W Statistic p-value</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1     -0.03883526      1.455678    0.15</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1     -0.03883526      1.455678   0.174</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Alternative hypothesis: rho != 0</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ici on trouve p-value &gt; 0.05 donc les résidus sont indépendants.</p>

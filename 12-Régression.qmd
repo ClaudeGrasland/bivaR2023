@@ -10,7 +10,7 @@ knitr::include_graphics("resources/figures/chap5_intro.jpg")
 ```
 
 
-- **Mise en place** : Télécharger le [dossier exo5](https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo5.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo5.Rproj` dans Rstudio.
+- **Mise en place** : Télécharger le [dossier exo5](https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo5.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo5.Rproj` dans Rstudio.
 
 
 ```{r , include=TRUE, echo=FALSE}

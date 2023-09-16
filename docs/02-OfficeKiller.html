@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction à la statistique bivariée avec R - 2&nbsp; Office Killer</title>
+<title>Introduction à la statistique avec R - 2&nbsp; Office Killer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-PremierPas.html">Introduction à R</a></li><li class="breadcrumb-item"><a href="./02-OfficeKiller.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Office Killer</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-PremierPas.html">Introduction à R et R Studio</a></li><li class="breadcrumb-item"><a href="./02-OfficeKiller.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Office Killer</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -128,9 +128,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction à la statistique bivariée avec R</a> 
+      <a href="./">Introduction à la statistique avec R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/ClaudeGrasland/bivar2023/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/ClaudeGrasland/startR/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Introduction à R</span></a>
+ <span class="menu-text">Introduction à R et R Studio</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Basculer la section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#diapos-rmd-power-point-killer" id="toc-diapos-rmd-power-point-killer" class="nav-link" data-scroll-target="#diapos-rmd-power-point-killer"><span class="header-section-number">2.4</span> Diapos Rmd : Power Point killer</a></li>
   <li><a href="#en-résumé" id="toc-en-résumé" class="nav-link" data-scroll-target="#en-résumé"><span class="header-section-number">2.5</span> En résumé</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/bivar2023/edit/main/02-OfficeKiller.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/startR/edit/main/02-OfficeKiller.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -365,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo2.zip">dossier exo2</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo2.Rproj</code> dans Rstudio.</li>
+<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo2.zip">dossier exo2</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo2.Rproj</code> dans Rstudio.</li>
 </ul>
 <p>Le but de ce chapitre est de montrer le plus tôt possible aux étudiants les possibilités de R et de son environnement R-Studio en ce qui concerne la production de documents ou de présentations dans le cadre d’une démarche reproductible. L’apprentissage précoce de <strong>Rmarkdown</strong> nous semble en effet indispensable, ne serait-ce que pour que les étudiants apprennent à prendre en cours des notes mélangeant les exemples de code R et les explications données en cours ou en TD.</p>
 <p>Mais le but véritable est de convaincre tout ou partie des étudiants qu’ils peuvent remplacer à terme les logiciels de bureautique des suites office par un environnement de travail plus intégré et plus performant… à condition d’oublier la souris pour revenir au clavier !</p>

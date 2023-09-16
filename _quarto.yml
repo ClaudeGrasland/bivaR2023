@@ -9,14 +9,14 @@ execute:
 lang: fr
 
 book:
-  title: "Introduction à la statistique bivariée avec R"
+  title: "Introduction à la statistique avec R"
   author: "Claude Grasland"
   date: today
   language: fr
   output-file: introduction_R_bivarié
   downloads: [epub, pdf]
-  url: https://ClaudeGrasland.github.io/bivar2023/
-  repo-url: https://github.com/ClaudeGrasland/bivar2023/
+  url: https://ClaudeGrasland.github.io/startR/
+  repo-url: https://github.com/ClaudeGrasland/startR/
   repo-actions: [edit]
   search: true
   reader-mode: true
@@ -27,7 +27,7 @@ book:
     - part: "Introduction"
       chapters:
         - index.qmd
-    - part: "Introduction à R"
+    - part: "Introduction à R et R Studio"
       chapters:
         - 01-PremierPas.qmd   
         - 02-OfficeKiller.qmd

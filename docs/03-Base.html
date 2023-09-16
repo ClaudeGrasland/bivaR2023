@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction à la statistique bivariée avec R - 3&nbsp; R-Base</title>
+<title>Introduction à la statistique avec R - 3&nbsp; R-Base</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-PremierPas.html">Introduction à R</a></li><li class="breadcrumb-item"><a href="./03-Base.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R-Base</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-PremierPas.html">Introduction à R et R Studio</a></li><li class="breadcrumb-item"><a href="./03-Base.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R-Base</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -128,9 +128,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction à la statistique bivariée avec R</a> 
+      <a href="./">Introduction à la statistique avec R</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/ClaudeGrasland/bivar2023/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/ClaudeGrasland/startR/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -184,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Introduction à R</span></a>
+ <span class="menu-text">Introduction à R et R Studio</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Basculer la section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#en-résumé" id="toc-en-résumé" class="nav-link" data-scroll-target="#en-résumé"><span class="header-section-number">3.5</span> En résumé</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/bivar2023/edit/main/03-Base.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/startR/edit/main/03-Base.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -365,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo3.zip">dossier exo3</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo3.Rproj</code> dans Rstudio.</li>
+<li><strong>Mise en place</strong> : Télécharger le <a href="https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo3.zip">dossier exo3</a> et décompressez le sur votre ordinateur. Puis ouvrez le projet R <code>exo3.Rproj</code> dans Rstudio.</li>
 </ul>
 <p>L’idée pédagogique est d’apprendre directement aux étudiants à programmer en R markdown plutôt qu’en R. Pourquoi ? Parce qu’ainsi ils vont simultanément :</p>
 <ul>
@@ -400,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/claudegrasland1/git/bivar2023"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/claudegrasland1/git/startR"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>La commande <code>list.files()</code> permet d’examiner le contenu du répertoire courant</li>
@@ -412,11 +412,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] "02-OfficeKiller_files" "02-OfficeKiller.html"  "02-OfficeKiller.qmd"  </span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] "03-Base_files"         "03-Base.qmd"           "03-Base.rmarkdown"    </span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] "11-Corrélation.qmd"    "12-Régression.qmd"     "13-Anova.qmd"         </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] "21-Tabcont.qmd"        "bivar2023.Rproj"       "css"                  </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] "DESCRIPTION"           "docs"                  "index.html"           </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] "index.pdf"             "index.qmd"             "js"                   </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] "latex"                 "LICENSE"               "README.md"            </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [28] "resources"             "site_libs"             "XX-ressources.qmd"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] "21-Tabcont.qmd"        "31-GraphBase.qmd"      "32-Ggplot2.qmd"       </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] "css"                   "DESCRIPTION"           "docs"                 </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] "index.html"            "index.pdf"             "index.qmd"            </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] "js"                    "latex"                 "LICENSE"              </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [28] "README.md"             "resources"             "site_libs"            </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [31] "statR.Rproj"           "XX-ressources.qmd"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="chargement-dun-fichier-texte" class="level4" data-number="3.1.1.2">

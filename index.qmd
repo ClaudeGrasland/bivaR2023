@@ -10,9 +10,9 @@ Il est basé sur `r R.Version()[["version.string"]]`.
 
 Ce document est régulièrement corrigé et mis à jour. La version de référence est disponible en ligne à l'adresse :
 
-- [https://github.com/ClaudeGrasland/bivaR2023](https://github.com/ClaudeGrasland/bivaR2023)
+- [https://github.com/ClaudeGrasland/startR](https://github.com/ClaudeGrasland/startR)
 
-Le code source est disponible [sur GitHub](https://github.com/ClaudeGrasland/bivaR2023).
+Le code source est disponible [sur GitHub](https://github.com/ClaudeGrasland/startR).
 
 Pour toute suggestion ou correction, il est possible de me contacter [par mail](mailto:claude.grasland@parisgeo.cnrs.fr)
 

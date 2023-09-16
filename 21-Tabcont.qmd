@@ -8,7 +8,7 @@ knitr::include_graphics("resources/figures/chap7_intro.gif")
 ```
 
 
-- **Mise en place** : Télécharger le [dossier exo7](https://github.com/ClaudeGrasland/bivar2023/raw/main/resources/exos/exo7.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo6.Rproj` dans Rstudio.
+- **Mise en place** : Télécharger le [dossier exo7](https://github.com/ClaudeGrasland/startR/raw/master/resources/exos/exo7.zip) et décompressez le sur votre ordinateur. Puis ouvrez le projet R `exo6.Rproj` dans Rstudio.
 
 
 
