@@ -310,12 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#rstudio-et-les-projets-r" id="toc-rstudio-et-les-projets-r" class="nav-link active" data-scroll-target="#rstudio-et-les-projets-r"><span class="header-section-number">2.1</span> Rstudio et les projets R</a>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link active" data-scroll-target="#rstudio"><span class="header-section-number">2.1</span> Rstudio</a>
   <ul class="collapse">
   <li><a href="#lancement-de-r-studio" id="toc-lancement-de-r-studio" class="nav-link" data-scroll-target="#lancement-de-r-studio"><span class="header-section-number">2.1.1</span> Lancement de R studio</a></li>
   <li><a href="#création-dun-projet" id="toc-création-dun-projet" class="nav-link" data-scroll-target="#création-dun-projet"><span class="header-section-number">2.1.2</span> Création d’un projet</a></li>
   </ul></li>
-  <li><a href="#programme-r-excel-killer" id="toc-programme-r-excel-killer" class="nav-link" data-scroll-target="#programme-r-excel-killer"><span class="header-section-number">2.2</span> Programme R : Excel killer ?</a>
+  <li><a href="#excel-killer" id="toc-excel-killer" class="nav-link" data-scroll-target="#excel-killer"><span class="header-section-number">2.2</span> Excel killer</a>
   <ul class="collapse">
   <li><a href="#round-1.-saisie-des-données-et-affichage-du-tableau" id="toc-round-1.-saisie-des-données-et-affichage-du-tableau" class="nav-link" data-scroll-target="#round-1.-saisie-des-données-et-affichage-du-tableau"><span class="header-section-number">2.2.1</span> Round 1. Saisie des données et affichage du tableau</a></li>
   <li><a href="#round-2.-affichage-de-la-carte" id="toc-round-2.-affichage-de-la-carte" class="nav-link" data-scroll-target="#round-2.-affichage-de-la-carte"><span class="header-section-number">2.2.2</span> Round 2. Affichage de la carte</a></li>
@@ -326,16 +326,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#round-7.-visualisation-des-deux-points-sur-la-carte" id="toc-round-7.-visualisation-des-deux-points-sur-la-carte" class="nav-link" data-scroll-target="#round-7.-visualisation-des-deux-points-sur-la-carte"><span class="header-section-number">2.2.7</span> Round 7. Visualisation des deux points sur la carte</a></li>
   <li><a href="#dernier-round.-refaire-toute-lanalyse-avec-une-station-de-plus" id="toc-dernier-round.-refaire-toute-lanalyse-avec-une-station-de-plus" class="nav-link" data-scroll-target="#dernier-round.-refaire-toute-lanalyse-avec-une-station-de-plus"><span class="header-section-number">2.2.8</span> Dernier round. Refaire toute l’analyse avec une station de plus</a></li>
   </ul></li>
-  <li><a href="#document-rmd-word-killer" id="toc-document-rmd-word-killer" class="nav-link" data-scroll-target="#document-rmd-word-killer"><span class="header-section-number">2.3</span> Document Rmd : Word killer ?</a>
+  <li><a href="#word-killer" id="toc-word-killer" class="nav-link" data-scroll-target="#word-killer"><span class="header-section-number">2.3</span> Word killer</a>
   <ul class="collapse">
-  <li><a href="#chargement-des-données" id="toc-chargement-des-données" class="nav-link" data-scroll-target="#chargement-des-données"><span class="header-section-number">2.3.1</span> Chargement des données</a></li>
-  <li><a href="#contour-de-rennes" id="toc-contour-de-rennes" class="nav-link" data-scroll-target="#contour-de-rennes"><span class="header-section-number">2.3.2</span> Contour de Rennes</a></li>
-  <li><a href="#distribution-de-la-population" id="toc-distribution-de-la-population" class="nav-link" data-scroll-target="#distribution-de-la-population"><span class="header-section-number">2.3.3</span> Distribution de la population</a></li>
-  <li><a href="#distribution-des-équipements" id="toc-distribution-des-équipements" class="nav-link" data-scroll-target="#distribution-des-équipements"><span class="header-section-number">2.3.4</span> Distribution des équipements</a></li>
-  <li><a href="#synthèse" id="toc-synthèse" class="nav-link" data-scroll-target="#synthèse"><span class="header-section-number">2.3.5</span> Synthèse</a></li>
+  <li><a href="#importation" id="toc-importation" class="nav-link" data-scroll-target="#importation"><span class="header-section-number">2.3.1</span> Importation</a></li>
+  <li><a href="#objectif-rapport-sur-léquipement-des-ménages" id="toc-objectif-rapport-sur-léquipement-des-ménages" class="nav-link" data-scroll-target="#objectif-rapport-sur-léquipement-des-ménages"><span class="header-section-number">2.3.2</span> Objectif : Rapport sur l’équipement des ménages</a></li>
+  <li><a href="#variation-1-équipement-des-ménages-en-moto-par-département" id="toc-variation-1-équipement-des-ménages-en-moto-par-département" class="nav-link" data-scroll-target="#variation-1-équipement-des-ménages-en-moto-par-département"><span class="header-section-number">2.3.3</span> Variation 1 : équipement des ménages en moto par département</a></li>
+  <li><a href="#variation-2-équipement-des-ménages-en-automobile-par-niveau-de-diplôme" id="toc-variation-2-équipement-des-ménages-en-automobile-par-niveau-de-diplôme" class="nav-link" data-scroll-target="#variation-2-équipement-des-ménages-en-automobile-par-niveau-de-diplôme"><span class="header-section-number">2.3.4</span> Variation 2 : équipement des ménages en automobile par niveau de diplôme</a></li>
+  <li><a href="#variation-3-zoom-sur-un-département" id="toc-variation-3-zoom-sur-un-département" class="nav-link" data-scroll-target="#variation-3-zoom-sur-un-département"><span class="header-section-number">2.3.5</span> Variation 3 : Zoom sur un département</a></li>
+  <li><a href="#variation-4-zoom-sur-une-commune" id="toc-variation-4-zoom-sur-une-commune" class="nav-link" data-scroll-target="#variation-4-zoom-sur-une-commune"><span class="header-section-number">2.3.6</span> Variation 4 : Zoom sur une commune</a></li>
   </ul></li>
-  <li><a href="#diapos-rmd-power-point-killer" id="toc-diapos-rmd-power-point-killer" class="nav-link" data-scroll-target="#diapos-rmd-power-point-killer"><span class="header-section-number">2.4</span> Diapos Rmd : Power Point killer</a></li>
-  <li><a href="#en-résumé" id="toc-en-résumé" class="nav-link" data-scroll-target="#en-résumé"><span class="header-section-number">2.5</span> En résumé</a></li>
+  <li><a href="#power-point-killer" id="toc-power-point-killer" class="nav-link" data-scroll-target="#power-point-killer"><span class="header-section-number">2.4</span> Power Point killer</a></li>
+  <li><a href="#gis-killer" id="toc-gis-killer" class="nav-link" data-scroll-target="#gis-killer"><span class="header-section-number">2.5</span> GIS killer</a>
+  <ul class="collapse">
+  <li><a href="#carte-du-bénin" id="toc-carte-du-bénin" class="nav-link" data-scroll-target="#carte-du-bénin"><span class="header-section-number">2.5.1</span> Carte du Bénin</a></li>
+  <li><a href="#carte-du-borgou" id="toc-carte-du-borgou" class="nav-link" data-scroll-target="#carte-du-borgou"><span class="header-section-number">2.5.2</span> Carte du Borgou</a></li>
+  <li><a href="#carte-de-cotonou" id="toc-carte-de-cotonou" class="nav-link" data-scroll-target="#carte-de-cotonou"><span class="header-section-number">2.5.3</span> Carte de Cotonou</a></li>
+  </ul></li>
+  <li><a href="#en-résumé" id="toc-en-résumé" class="nav-link" data-scroll-target="#en-résumé"><span class="header-section-number">2.6</span> En résumé</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClaudeGrasland/startR/edit/main/02-OfficeKiller.qmd" class="toc-action">Modifier cette page</a></p></div></div></nav>
     </div>
@@ -361,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/chap2_intro.png" class="img-fluid"></p>
+<p><img src="resources/figures/chap2_intro.png" class="img-fluid" width="256"></p>
 </div>
 </div>
 <ul>
@@ -372,8 +379,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Real mensch never clcik !</p>
 </blockquote>
-<section id="rstudio-et-les-projets-r" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="rstudio-et-les-projets-r"><span class="header-section-number">2.1</span> Rstudio et les projets R</h2>
+<section id="rstudio" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.1</span> Rstudio</h2>
 <blockquote class="blockquote">
 <ul>
 <li>Au commencement, les dieux de la statistique créèrent le langage R.</li>
@@ -399,13 +406,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Le dossier contenant votre projet R peut être organisé à votre convenance. Certains mettent tout les fichier pêle-mêle dans le dossier. D’autres préfèrent créer des sous-dossiers contenant des données, des programmes, des résultats, des figures. Vous déciderez à l’usage de ce qui vous convient le mieux, mais le point important est que <strong>tout ce qui entre ou sort de vos programmes R doit être de préférence stocké dans le répertoire du projet</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/monprojet.png" class="img-fluid"></p>
+<p><img src="resources/figures/monprojet.png" class="img-fluid" width="516"></p>
 </div>
 </div>
 </section>
 </section>
-<section id="programme-r-excel-killer" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="programme-r-excel-killer"><span class="header-section-number">2.2</span> Programme R : Excel killer ?</h2>
+<section id="excel-killer" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="excel-killer"><span class="header-section-number">2.2</span> Excel killer</h2>
 <blockquote class="blockquote">
 <ul>
 <li>C’est pourquoi tu quittera Word et Excel, et t’attachera à R studio,</li>
@@ -415,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La fonction initiale d’un langage de programmation comme R est … de créer des <strong>programmes</strong> c’est-à-dire des ensembles d’instruction permettant d’accomplir une tâche à l’intérieur d’une chaîne de production. Dans le cas d’un logiciel spécialisé dans l’analyse statistique, il s’agira donc de partir de données (statistiques, géographiques, textuelles, …) pour aboutir à des résultats prenant la forme de tableaux, cartes ou graphiques. Il ne s’agit donc en somme que d’une étape du travail de recherche où le principal avantage de R est d’<strong>automatiser une tâche</strong> et de faciliter sa <strong>reproduction ultérieure</strong> avec en arrière plan un objectif de <strong>productivité</strong> puisque l’ordinateur réalise en quelques millisecondes des tâches qui prendraient des heures avec un logiciel click-bouton de type Excel.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/ProgrammeR.png" class="img-fluid"></p>
+<p><img src="resources/figures/ProgrammeR.png" class="img-fluid" width="475"></p>
 </div>
 </div>
 <p>Prenons un exemple simple de problème facile à résoudre avec R mais plus compliqué avec des logiciels click-boutons. Il s’agit d’un exemple pédagogique tiré d’un <a href="!http://grasland.script.univ-paris-diderot.fr/go303/ch1/ch1.htm">très vieux cours d’analyse spatiale</a> portant sur les semis de point et les localisations optimales.</p>
@@ -432,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/access.png" class="img-fluid"></p>
+<p><img src="resources/figures/access.png" class="img-fluid" width="211"></p>
 </div>
 </div>
 <p>On constitue deux équipes d’étudiants, certains utilisant un programme R et d’autres Excel. On se propose de voir qui ira le plus vite sur chacune des 8 tâches proposées.</p>
@@ -620,11 +627,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="02-OfficeKiller_files/figure-html/carte003-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="callout-primary">
 <p>Excel n’a aucune chance d’aller plus vite et R remporte le match par KO !</p>
+</div>
 </section>
 </section>
-<section id="document-rmd-word-killer" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="document-rmd-word-killer"><span class="header-section-number">2.3</span> Document Rmd : Word killer ?</h2>
+<section id="word-killer" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="word-killer"><span class="header-section-number">2.3</span> Word killer</h2>
 <blockquote class="blockquote">
 <ul>
 <li>R-Studio dit : « Faisons une interface de rédaction adaptée à notre travail,</li>
@@ -637,167 +646,1198 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Nul besoin de ciseau et de colle pour aller chercher tel tableau ici, tel figure là-bas ou telle carte ailleurs. Tous ces éléments sont intégrs au fur et à mesure de la rédaction ce qui facilite considérablement la concentration. Et surtout - on l’a déjà vu pour le programme R - le document peut facilement être reproduit ou mise à jour sans être obligé de réplique des dizaines de click de souris.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/DocumentRmd.png" class="img-fluid"></p>
+<p><img src="resources/figures/DocumentRmd.png" class="img-fluid" width="475"></p>
 </div>
 </div>
-<p>Nous allons illustrer l’usage de R markdown en rédigeant une courte note sur la distribution de la population et de certains commerces et services à Rennes. L’exemple est repris du <a href="https://www.insee.fr/fr/information/3635442">Manuel d’analyse spatiale publié par l’INSEE en 2018</a> et plus précisement de son <a href="https://www.insee.fr/fr/statistiques/fichier/3635442/imet131-h-chapitre-4.pdf">chapitre 4. Les configurations de points</a></p>
-<p>Comme nous avons pris la perspective de n’employer aucun package R au cours de cette formation initiale, les données ont été légèrement modifiées, notamment pour le tracé de la carte des contours de la ville de Rennes.</p>
-<section id="chargement-des-données" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="chargement-des-données"><span class="header-section-number">2.3.1</span> Chargement des données</h3>
-<p>Nous disposons de trois fichiers qui comportent chacun des coordonnées de localisation utilisant la même projection Lambert et que l’on pourra de ce fait superposer. Après les avoir chargés et décrits, on en propose une première visualisation à l’aide des fonctions graphiques de base de R.</p>
+<p>Nous allons illustrer l’usage de R markdown en prenant l’exemple de l’exploitation du recensement général de population de 2013 au Bénin.</p>
+<p>Le jeu de données est un échantillon de variables relatives aux ménages du Bénin lors du RP 2013. Il s’agit plus précisément d’une extraction par tirage au sort de 100 ménages dans chacun des 546 arrondissements du Bénin. Le tirage au sort a été effectué en se limitant aux ménages composés d’au moins deux personnes, dont le chef de ménage est marié ou en union libre et dont les variables chosies ne comportent pas de valeurs manquantes ou non renseignés. La base de sondage se compose donc d’1.305 millions de ménages sur les 2 millions que compte le Bénin à cette date. L’échantillon comporte exactement 54600 lignes (100 pour chacun des 546 arrondissements).</p>
+<p>Les variables ont été anonymisées en supprimant le numéro d’identification des ménages du recensement et en le remplaçant par le code de l’arrondissement suivi d’un chiffre de 001 à 100. Les variables les plus discriminantes ont vu leur nombre de modalité réduit.</p>
+<section id="importation" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="importation"><span class="header-section-number">2.3.1</span> Importation</h3>
+<p>On importe les données depuis excel à l’aide de la fonction <code>read_xlsx()</code> du package <strong>readxl</strong>. Chaque feuille du tableur Excel devient un <em>data.frame</em> différent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>don<span class="ot">&lt;-</span><span class="fu">read_xlsx</span>(<span class="st">"resources/data/BEN-MEN-2013/BEN-MEN-2013-SAMPLE.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"data"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>meta<span class="ot">&lt;-</span><span class="fu">read_xlsx</span>(<span class="st">"resources/data/BEN-MEN-2013/BEN-MEN-2013-SAMPLE.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"meta"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; New names:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; • `` -&gt; `...2`</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le tableau comporte 47 variables</p>
+<p><strong>STRATES</strong><br>
+- ID : identifiant anonyme du ménage<br>
+- WGT : poids du ménage</p>
+<p><strong>POSITION GEOGRAPHIQUE</strong> - DEP : code du département<br>
+- DEP_NAME : nom du département<br>
+- COM : code de la commune<br>
+- COM_NAME : nom de la commune<br>
+- ARR : code de l’arrondissement<br>
+- ARR_NAME : nom de l’arrondissement<br>
+- URBA : statut de l’arrondissement (0 = rural, 1 = urbain)<br>
+- DEP_CHEF : arrondissement situé au chef-lieu du département (0 = non, 1 = oui)<br>
+- COM_CHEF : arrondissement situé au chef-lieu de la commune (0 = non, 1 = oui)<br>
+- COM_CHEF_DIST : distance de l’arrondissement au chef-lieu de sa commune (en km)<br>
+- DEP_CHEF_DIST : distance de l’arrondissement au chef-lieu de son département (en km)<br>
+- NAT_CHEF_DIST : distance de l’arrondissement à l’aéroport de Cotonu (en km)</p>
+<p><strong>STRUCTURE DU MENAGE</strong><br>
+- statoc : statut d’occupation (Propriété individuelle ou familiale, locataire, autre)<br>
+- tailmen : nombre de personnes recensées dans le ménage</p>
+<p><strong>ATTRIBUTS DU CHEF DE MENAGE</strong><br>
+- locnais : code de la commune de naissance (ou du département ou du pays étranger)<br>
+- datnais : année de naissance<br>
+- age : âge en différence de millésime<br>
+- sexe : sexe<br>
+- etud5 : niveau d’étude maximal (ramené à 5 modalités)</p>
+<p><strong>EQUIPEMENT DU MENAGE (présence ou absence) </strong><br>
+- radio : poste de radio<br>
+- telev : poste de télévision<br>
+- hifi : chaîne HIFI<br>
+- parab : parabole<br>
+- magne : magnetoscope<br>
+- cddvd : lecteur de CD-DVD<br>
+- frigo : réfrigérateur<br>
+- cuisi : cuisinière<br>
+- foyam : foyer aménagé<br>
+- ferre : fer à repasser<br>
+- clima : climatiseur<br>
+- venti : betilateur<br>
+- lit : lit<br>
+- matel : matelas<br>
+- faumo : fauteuril moderne<br>
+- ordi : ordinateur<br>
+- inter : accès internet<br>
+- elgen : générateur électrique<br>
+- bicyc : bicyclette<br>
+- motoc : motcyclette<br>
+- voitu : coiture<br>
+- barqu : barque, pirogue<br>
+- telfix: téléphone fixe (au moins une ligne)<br>
+- telmob: téléphone mobile (au moins un abonnement)</p>
+<p><strong>SYNTHESE DES EQUIPEMENTS</strong><br>
+- equip_tot : nombre total d’équipements différents (0 à 24)<br>
+- equip_acp : coordonnées sur le 1er axe factoriel d’une ACP sur les 24 équipements.</p>
+<p>Nous affichons à titre d’exemple les 5 premières lignes du tableau</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(don)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 47</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ID          WGT DEP   DEP_NAME COM   COM_NAME  ARR   ARR_NAME   URBA DEP_CHEF</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 01101_001  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 01101_002  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 01101_003  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 01101_004  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 01101_005  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 01101_006  37.6 01    ALIBORI  011   BANIKOARA 01101 FOUNOUNGO     0        0</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 37 more variables: COM_CHEF &lt;dbl&gt;, COM_CHEF_DIST &lt;dbl&gt;,</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   DEP_CHEF_DIST &lt;dbl&gt;, NAT_CHEF_DIST &lt;dbl&gt;, statoc &lt;chr&gt;, tailmen &lt;dbl&gt;,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   locnais &lt;chr&gt;, datnais &lt;dbl&gt;, age &lt;dbl&gt;, sexe &lt;chr&gt;, etud5 &lt;chr&gt;,</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   radio &lt;lgl&gt;, telev &lt;lgl&gt;, hifi &lt;lgl&gt;, parab &lt;lgl&gt;, magne &lt;lgl&gt;,</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   cddvd &lt;lgl&gt;, frigo &lt;lgl&gt;, cuisi &lt;lgl&gt;, foyam &lt;lgl&gt;, ferre &lt;lgl&gt;,</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   clima &lt;lgl&gt;, venti &lt;lgl&gt;, lit &lt;lgl&gt;, matel &lt;lgl&gt;, faumo &lt;lgl&gt;, ordi &lt;lgl&gt;,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   inter &lt;lgl&gt;, elgen &lt;lgl&gt;, bicyc &lt;lgl&gt;, motoc &lt;lgl&gt;, voitu &lt;lgl&gt;, …</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="contour-de-rennes" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="contour-de-rennes"><span class="header-section-number">2.3.2</span> Contour de Rennes</h3>
-<p>On charge le fichier avec <code>read.table()</code> puis on affiche ses premières lignes avec <code>head()</code>et on regarde sa taille avec <code>dim()</code></p>
+<section id="objectif-rapport-sur-léquipement-des-ménages" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="objectif-rapport-sur-léquipement-des-ménages"><span class="header-section-number">2.3.2</span> Objectif : Rapport sur l’équipement des ménages</h3>
+<p>Nous devons construire un rapport national comportant des tableaux, des graphiques et des cartes par département pour différents indicateurs d’équipement des ménages afin d’évaluer les inégalités. Le premier équipement retenu est la présence ou l’absence d’une automobile dans le ménage.</p>
+<p>On commence par estimer le <strong>nombre de ménages équipés au niveau de l’ensemble du pays et par département</strong>. Nous devons pour cela construire l’équivalent d’un tableau croisée dynamique dans Excel qui aurait cette forme là :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"resources/data/rennes/map.csv"</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> T,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(map,<span class="dv">2</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          x       y</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 346382.1 6786334</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 346460.0 6786704</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(map)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 37  2</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>On affiche le contour avec les instructions <code>plot()</code> et <code>lines()</code>. On doit impérativement ajouter le paramètre <em>asp = 1</em> dans plot() pour imposer une échelle identique sur l’axe vertical et l’axe horizontal.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(map<span class="sc">$</span>x,map<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">asp =</span> <span class="dv">1</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(map<span class="sc">$</span>x,map<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"resources/figures/excel001.png"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="resources/figures/excel001.png" class="img-fluid" width="849"></p>
 </div>
 </div>
-</section>
-<section id="distribution-de-la-population" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="distribution-de-la-population"><span class="header-section-number">2.3.3</span> Distribution de la population</h3>
-<p>On charge le fichier de population de la même manière et on constate qu’il comporte une troisième colonne indiquant la population localisée en chaque point. En fait, il s’agit d’une grille de population qui localise les habitants sur une maille de ??? m</p>
+<p>On note qu’il faudra bien pondérer les calculs par le poids des individus de l’échantillon car tous les districts n’ont pas le même nombre de ménages.</p>
+<p>Nous allons charger le package <strong>questionr</strong> qui est particulièrement adapté à cette tâche puisqu’il permet de créer des tableaux pondérés avec la fonction <code>wtd.table()</code></p>
+<p>Le programme suivant réalise exactement la même opération que celle du tableau dynamique d’Excel, puis il affiche le résultat sous la forme d’un tableau dans le document .Rmd</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"resources/data/rennes/popu.csv"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> T,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop,<span class="dv">2</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          x       y pop</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 346202.1 6790631  20</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 346203.4 6792843   5</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pop)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 24916     3</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>On procède à une première cartographie qui ne tient pas compte de l’effectif de population mais indique juste les cases occupées et inoccupées, ce qui permet de donner une vision générale de l’occuparion du sol et du peuplement de Rennes et de l’espace environnant.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop<span class="sc">$</span>x,pop<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">asp =</span> <span class="dv">1</span>,<span class="at">pch=</span><span class="dv">22</span>, <span class="at">cex=</span><span class="fl">0.01</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(map<span class="sc">$</span>x,map<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"black"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span><span class="fu">wtd.table</span>(x<span class="ot">&lt;-</span>don<span class="sc">$</span>DEP_NAME,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               y<span class="ot">&lt;-</span>don<span class="sc">$</span>voitu,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">weights =</span> don<span class="sc">$</span>WGT,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">digits =</span> )</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">addmargins</span>(tab), </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">0</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"Nombre de ménages équipés en automobiles par département"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<table class="table table-sm table-striped small">
+<caption>Nombre de ménages équipés en automobiles par département</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ALIBORI</td>
+<td style="text-align: right;">87072</td>
+<td style="text-align: right;">3455</td>
+<td style="text-align: right;">90528</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATACORA</td>
+<td style="text-align: right;">75348</td>
+<td style="text-align: right;">2222</td>
+<td style="text-align: right;">77570</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATLANTIQUE</td>
+<td style="text-align: right;">191910</td>
+<td style="text-align: right;">19045</td>
+<td style="text-align: right;">210955</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BORGOU</td>
+<td style="text-align: right;">118362</td>
+<td style="text-align: right;">5252</td>
+<td style="text-align: right;">123614</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COLLINES</td>
+<td style="text-align: right;">90658</td>
+<td style="text-align: right;">3800</td>
+<td style="text-align: right;">94458</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COUFFO</td>
+<td style="text-align: right;">100125</td>
+<td style="text-align: right;">2439</td>
+<td style="text-align: right;">102564</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DONGA</td>
+<td style="text-align: right;">52616</td>
+<td style="text-align: right;">2216</td>
+<td style="text-align: right;">54832</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LITTORAL</td>
+<td style="text-align: right;">87806</td>
+<td style="text-align: right;">18540</td>
+<td style="text-align: right;">106346</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MONO</td>
+<td style="text-align: right;">70025</td>
+<td style="text-align: right;">1929</td>
+<td style="text-align: right;">71954</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OUEME</td>
+<td style="text-align: right;">149359</td>
+<td style="text-align: right;">13812</td>
+<td style="text-align: right;">163171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLATEAU</td>
+<td style="text-align: right;">79323</td>
+<td style="text-align: right;">4550</td>
+<td style="text-align: right;">83873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZOU</td>
+<td style="text-align: right;">120851</td>
+<td style="text-align: right;">4472</td>
+<td style="text-align: right;">125323</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">1223456</td>
+<td style="text-align: right;">81732</td>
+<td style="text-align: right;">1305188</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<p>On décide ensuite de calculer les pourcentages en ligne afin de connaître la part des ménages équipés d’automobile dans l’ensemble du pays ainsi que dans chaque département.</p>
+<p>La conversion en pct se fait en une seule ligne avec la fonction <code>lprop()</code> - abréviation de <em>line proportion</em> - du package <strong>questionr</strong>. On affiche ensuite le nouveau tableau dans le document .Rmd avec un titre différent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tabpct <span class="ot">&lt;-</span> <span class="fu">lprop</span>(tab)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabpct, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"% de ménages équipés en automobiles par département"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>% de ménages équipés en automobiles par département</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ALIBORI</td>
+<td style="text-align: right;">96.2</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATACORA</td>
+<td style="text-align: right;">97.1</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATLANTIQUE</td>
+<td style="text-align: right;">91.0</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BORGOU</td>
+<td style="text-align: right;">95.8</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COLLINES</td>
+<td style="text-align: right;">96.0</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COUFFO</td>
+<td style="text-align: right;">97.6</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DONGA</td>
+<td style="text-align: right;">96.0</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LITTORAL</td>
+<td style="text-align: right;">82.6</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MONO</td>
+<td style="text-align: right;">97.3</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OUEME</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLATEAU</td>
+<td style="text-align: right;">94.6</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZOU</td>
+<td style="text-align: right;">96.4</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All</td>
+<td style="text-align: right;">93.7</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>On peut facilement ajouter un petit commentaire, comme on le ferait dans Word. Par exemple :</p>
+<ul>
+<li><strong>Commentaire : </strong> Dans l’ensemble du Bénin, le taux d’équipement des ménages en automobile est environ de 6.3% en 2013. Cette faible proportion dissimule toutefois de fortes variations d’un département à l’autre. Dans le département du Littoral qui correspond à la métropole de Cotonou, le taux d’équipement est de 17.4%. Dans le département de Couffo qui est une zone très rurale peu développée, le taux d’équipement automobile des ménages n’est que de 2.4%. Cela fait presque un rapport de 1 à 7 !</li>
+</ul>
+<p>Pour assurer une visualisation qui combine des informations issues des deux tableaux précédents, on peut utiliser la fonction générique <code>plot()</code> en l’appliquant au tableau de contingence. On raccourcit juste le nom des départements pour un meilleur affichage avec la fonction <code>substr()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab)<span class="ot">&lt;-</span><span class="fu">substr</span>(<span class="fu">rownames</span>(tab),<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tab,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">"gray90"</span>,<span class="st">"black"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Equipement des ménages en automobile par département"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Source : RP 2013, INS Bénin"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>     )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Cette figure est intéressante car elle permet de visualiser simultanément le poids démographique des départements (largeur des barres à la base) et la proportion de ménages disposant d’une automobile (hauteur de la barre noire). Il n’est pas possible de la produire avec Excel qui aurait besoin de deux graphiques pour exprimer à la fois le poids des départements et leur taux d’équipement.</p>
 </section>
-<section id="distribution-des-équipements" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="distribution-des-équipements"><span class="header-section-number">2.3.4</span> Distribution des équipements</h3>
-<p>L’INSEE a extrait du fichier de la Base Publique des Equipements quatre types de localisations correspondant aux écoles, aux médecins, aux pharmacies et aux commerces de vêtements. On notera l’ajout du paramètre <em>encoding=“UTF-8”</em> qui permet de lire sans erreur les caractères accentués et d’éviter par exemple que “Vêtements” devienne “VÃªtements”.</p>
+<section id="variation-1-équipement-des-ménages-en-moto-par-département" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="variation-1-équipement-des-ménages-en-moto-par-département"><span class="header-section-number">2.3.3</span> Variation 1 : équipement des ménages en moto par département</h3>
+<p>Maintenant que nous disposons d’un progamme, nous allons effectuer des variations en changeant un ou plusieurs critères. Par exemple, nous allons prendre comme équipement la présence d’une moto ou mobylette plutôt que d’une voiture. Nous reprenons les programmes précédents en changeant juste le nom de la variable d’équipement et le titre des tableaux ou figures</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bpe <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"resources/data/rennes/bpe.csv"</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> T,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">";"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">encoding=</span><span class="st">"UTF-8"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bpe,<span class="dv">2</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            x       y    equ</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 286 349156.2 6790525 Ecoles</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 287 351800.4 6786774 Ecoles</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bpe)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 767   3</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span><span class="fu">wtd.table</span>(x<span class="ot">&lt;-</span>don<span class="sc">$</span>DEP_NAME,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               y<span class="ot">&lt;-</span>don<span class="sc">$</span>motoc,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">weights =</span> don<span class="sc">$</span>WGT)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">addmargins</span>(tab), </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">0</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"Nombre de ménages équipés en moto par département"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Nombre de ménages équipés en moto par département</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ALIBORI</td>
+<td style="text-align: right;">40272</td>
+<td style="text-align: right;">50256</td>
+<td style="text-align: right;">90528</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATACORA</td>
+<td style="text-align: right;">38980</td>
+<td style="text-align: right;">38590</td>
+<td style="text-align: right;">77570</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATLANTIQUE</td>
+<td style="text-align: right;">96047</td>
+<td style="text-align: right;">114908</td>
+<td style="text-align: right;">210955</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BORGOU</td>
+<td style="text-align: right;">46490</td>
+<td style="text-align: right;">77124</td>
+<td style="text-align: right;">123614</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COLLINES</td>
+<td style="text-align: right;">42907</td>
+<td style="text-align: right;">51551</td>
+<td style="text-align: right;">94458</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COUFFO</td>
+<td style="text-align: right;">59943</td>
+<td style="text-align: right;">42621</td>
+<td style="text-align: right;">102564</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DONGA</td>
+<td style="text-align: right;">22719</td>
+<td style="text-align: right;">32113</td>
+<td style="text-align: right;">54832</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LITTORAL</td>
+<td style="text-align: right;">47100</td>
+<td style="text-align: right;">59246</td>
+<td style="text-align: right;">106346</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MONO</td>
+<td style="text-align: right;">48843</td>
+<td style="text-align: right;">23111</td>
+<td style="text-align: right;">71954</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OUEME</td>
+<td style="text-align: right;">80628</td>
+<td style="text-align: right;">82543</td>
+<td style="text-align: right;">163171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLATEAU</td>
+<td style="text-align: right;">37995</td>
+<td style="text-align: right;">45878</td>
+<td style="text-align: right;">83873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZOU</td>
+<td style="text-align: right;">62849</td>
+<td style="text-align: right;">62474</td>
+<td style="text-align: right;">125323</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">624774</td>
+<td style="text-align: right;">680414</td>
+<td style="text-align: right;">1305188</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>On utilise l’instruction <code>table()</code>pour dénombrer l’effectif de chaque équipement :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bpe<span class="sc">$</span>equ)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Ecoles   Médecins Pharmacies  Vêtements </span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         59        268         70        370</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tabpct <span class="ot">&lt;-</span> <span class="fu">lprop</span>(tab)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabpct, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"% de ménages équipés en moto par département"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>% de ménages équipés en moto par département</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ALIBORI</td>
+<td style="text-align: right;">44.5</td>
+<td style="text-align: right;">55.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATACORA</td>
+<td style="text-align: right;">50.3</td>
+<td style="text-align: right;">49.7</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ATLANTIQUE</td>
+<td style="text-align: right;">45.5</td>
+<td style="text-align: right;">54.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BORGOU</td>
+<td style="text-align: right;">37.6</td>
+<td style="text-align: right;">62.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COLLINES</td>
+<td style="text-align: right;">45.4</td>
+<td style="text-align: right;">54.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COUFFO</td>
+<td style="text-align: right;">58.4</td>
+<td style="text-align: right;">41.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DONGA</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">58.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LITTORAL</td>
+<td style="text-align: right;">44.3</td>
+<td style="text-align: right;">55.7</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MONO</td>
+<td style="text-align: right;">67.9</td>
+<td style="text-align: right;">32.1</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OUEME</td>
+<td style="text-align: right;">49.4</td>
+<td style="text-align: right;">50.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLATEAU</td>
+<td style="text-align: right;">45.3</td>
+<td style="text-align: right;">54.7</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZOU</td>
+<td style="text-align: right;">50.1</td>
+<td style="text-align: right;">49.9</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All</td>
+<td style="text-align: right;">47.9</td>
+<td style="text-align: right;">52.1</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Puis on visualise après avoir attribué une couleur à chaque équipement. On crée pour cela une nouvelle variable :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bpe<span class="sc">$</span>couleur<span class="ot">&lt;-</span><span class="fu">as.factor</span>(bpe<span class="sc">$</span>equ)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(bpe<span class="sc">$</span>couleur)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Ecoles"     "Médecins"   "Pharmacies" "Vêtements"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(bpe<span class="sc">$</span>couleur)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"green"</span>,<span class="st">"orange"</span>,<span class="st">"red"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>bpe<span class="sc">$</span>couleur<span class="ot">&lt;-</span><span class="fu">as.character</span>(bpe<span class="sc">$</span>couleur)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bpe<span class="sc">$</span>couleur)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   blue  green orange    red </span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     59    268     70    370</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab)<span class="ot">&lt;-</span><span class="fu">substr</span>(<span class="fu">rownames</span>(tab),<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tab,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">"gray90"</span>,<span class="st">"black"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Equipement des ménages en moto par département"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Source : RP 2013, INS Bénin"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>     )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Il ne nous a fallu que quelques secondes pour changer le programme précédent et afficher les deux tableaux et le graphique dans notre rapport. On peut donc se consacrer essentiellement à un nouveau commentaire des résultats :</p>
+<ul>
+<li><strong>Commentaire</strong> : Un peu plus de la moitié (52.1%) des ménages du Bénin possède une moto ou une motocyclette en 2013. La répartition est ici beaucoup plus égalitaire que pour les automobile puisque le taux le plus faible est de 32.1% (<em>Mono</em>) et le taux le plus fort de 58.6% (<em>Donga</em>) ce qui n’est même pas le double.</li>
+</ul>
 </section>
-<section id="synthèse" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="synthèse"><span class="header-section-number">2.3.5</span> Synthèse</h3>
-<p>On peut désormais assembler nos trois couches :</p>
+<section id="variation-2-équipement-des-ménages-en-automobile-par-niveau-de-diplôme" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="variation-2-équipement-des-ménages-en-automobile-par-niveau-de-diplôme"><span class="header-section-number">2.3.4</span> Variation 2 : équipement des ménages en automobile par niveau de diplôme</h3>
+<p>Nous revenons à l’automobile mais au lieu de faire un calcul par département on va examiner l’effet du niveau de diplôme du chef de ménage. Nous allons ainsi pouvoir examiner les variations sociales du taux d’équipement en faisant l’hypothèse que le diplôme du chef de ménage est - en première approximation - une mesure indirecte du niveau social du ménage.</p>
+<p>On doit à peine modifier le programme R précédent pour construire les tableaux et figures habituels.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop<span class="sc">$</span>x,pop<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"gray"</span>, <span class="at">asp =</span> <span class="dv">1</span>,<span class="at">pch=</span><span class="dv">22</span>, <span class="at">cex=</span><span class="fl">0.01</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(map<span class="sc">$</span>x,map<span class="sc">$</span>y, <span class="at">col=</span><span class="st">"black"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(bpe<span class="sc">$</span>x,bpe<span class="sc">$</span>y,<span class="at">bg=</span>bpe<span class="sc">$</span>couleur, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span><span class="fu">wtd.table</span>(x<span class="ot">&lt;-</span>don<span class="sc">$</span>etud5,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>               y<span class="ot">&lt;-</span>don<span class="sc">$</span>voitu,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">weights =</span> don<span class="sc">$</span>WGT,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">digits =</span> )</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">addmargins</span>(tab), </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">0</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"Nombre de ménages équipés en automobile par niveau d'étude"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Nombre de ménages équipés en automobile par niveau d’étude</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1.Aucun</td>
+<td style="text-align: right;">688483</td>
+<td style="text-align: right;">17310</td>
+<td style="text-align: right;">705794</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2.Primaire</td>
+<td style="text-align: right;">258754</td>
+<td style="text-align: right;">16281</td>
+<td style="text-align: right;">275035</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3.Secondaire</td>
+<td style="text-align: right;">227208</td>
+<td style="text-align: right;">29044</td>
+<td style="text-align: right;">256252</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4.Supérieur</td>
+<td style="text-align: right;">49011</td>
+<td style="text-align: right;">19097</td>
+<td style="text-align: right;">68108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">1223456</td>
+<td style="text-align: right;">81732</td>
+<td style="text-align: right;">1305188</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tabpct <span class="ot">&lt;-</span> <span class="fu">lprop</span>(tab)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabpct, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"% de ménages équipés en en automobile par niveau d'étude"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>% de ménages équipés en en automobile par niveau d’étude</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1.Aucun</td>
+<td style="text-align: right;">97.5</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2.Primaire</td>
+<td style="text-align: right;">94.1</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3.Secondaire</td>
+<td style="text-align: right;">88.7</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4.Supérieur</td>
+<td style="text-align: right;">72.0</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All</td>
+<td style="text-align: right;">93.7</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab)<span class="ot">&lt;-</span><span class="fu">substr</span>(<span class="fu">rownames</span>(tab),<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tab,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">"gray90"</span>,<span class="st">"black"</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Equipement des ménages en en automobile par niveau d'étude"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Source : RP 2013, INS Bénin"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>     )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Il est facile de procéder à un zoom en ajoutant des paramètres <em>xlim</em> et <em>ylim</em> dans la fonction plot() qui précise l’espace d’étude.</p>
+<ul>
+<li><strong>Commentaire : </strong> Le taux d’équipement automobile augmente de façon pratiquement exponentielle avec le niveau de diplôme des chefs de ménages, passant de 2.5% pour les sans diplômes à 5.9% pour les diplômés du primaire, 11.3% pour ceux du secondaire et 28.0 % pour ceux du supérieur. La largeur des barres de la figure montre par ailleurs qu’il y a beaucoup de chefs de ménages sans diplômes et très peu avec un niveau universitaire.</li>
+</ul>
+</section>
+<section id="variation-3-zoom-sur-un-département" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="variation-3-zoom-sur-un-département"><span class="header-section-number">2.3.5</span> Variation 3 : Zoom sur un département</h3>
+<p>Nous allons maintenant reprendre nos analyses mais en prenant comme référence un département et en étudiant les variations de résultats par communes à l’intéreur de celui-ci. En terme de construction de document, cela pourrait correspondre à la rédaction d’un annuaire statistique régional reprenant les informations de l’annuaire statitique national mais de façon plus détaillée.</p>
+<p>En terme de programme R, on commence par sélectionner un sous-tableau relatif au département qui nous intéresse (e.g.&nbsp;Borgou) puis on applique les mêmes programmes que précédemment mais en détaillant les résultats par commune et non plus par département.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop<span class="sc">$</span>x,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>     pop<span class="sc">$</span>y, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"gray"</span>, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">asp =</span> <span class="dv">1</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">22</span>, </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex=</span><span class="fl">0.1</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">351000</span>,<span class="dv">353000</span>),</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">6788500</span>,<span class="dv">6790500</span>))</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(map<span class="sc">$</span>x,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      map<span class="sc">$</span>y, </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"black"</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(bpe<span class="sc">$</span>x,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       bpe<span class="sc">$</span>y,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">bg=</span>bpe<span class="sc">$</span>couleur, </span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch=</span><span class="dv">21</span>, </span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sel<span class="ot">&lt;-</span>don[don<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"BORGOU"</span>,]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span><span class="fu">wtd.table</span>(x<span class="ot">&lt;-</span>sel<span class="sc">$</span>COM_NAME,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>               y<span class="ot">&lt;-</span>sel<span class="sc">$</span>voitu,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">weights =</span> sel<span class="sc">$</span>WGT,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">digits =</span> )</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">addmargins</span>(tab), </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">0</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"Nombre de ménages équipés en automobile par communes du Borgou"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Nombre de ménages équipés en automobile par communes du Borgou</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BEMBEREKE</td>
+<td style="text-align: right;">11339</td>
+<td style="text-align: right;">524</td>
+<td style="text-align: right;">11863</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KALALE</td>
+<td style="text-align: right;">14410</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">14792</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">N DALI</td>
+<td style="text-align: right;">11071</td>
+<td style="text-align: right;">285</td>
+<td style="text-align: right;">11356</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NIKK</td>
+<td style="text-align: right;">13479</td>
+<td style="text-align: right;">565</td>
+<td style="text-align: right;">14044</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PARAKOU</td>
+<td style="text-align: right;">29629</td>
+<td style="text-align: right;">2394</td>
+<td style="text-align: right;">32023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PERERE</td>
+<td style="text-align: right;">7292</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">7467</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SINENDE</td>
+<td style="text-align: right;">7451</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">7579</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TCHAOUROU</td>
+<td style="text-align: right;">23690</td>
+<td style="text-align: right;">800</td>
+<td style="text-align: right;">24490</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">118362</td>
+<td style="text-align: right;">5252</td>
+<td style="text-align: right;">123614</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tabpct <span class="ot">&lt;-</span> <span class="fu">lprop</span>(tab)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabpct, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"% de ménages équipés en en automobile par communes du Borgou"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>% de ménages équipés en en automobile par communes du Borgou</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BEMBEREKE</td>
+<td style="text-align: right;">95.6</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KALALE</td>
+<td style="text-align: right;">97.4</td>
+<td style="text-align: right;">2.6</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">N DALI</td>
+<td style="text-align: right;">97.5</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NIKK</td>
+<td style="text-align: right;">96.0</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PARAKOU</td>
+<td style="text-align: right;">92.5</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PERERE</td>
+<td style="text-align: right;">97.7</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SINENDE</td>
+<td style="text-align: right;">98.3</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TCHAOUROU</td>
+<td style="text-align: right;">96.7</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All</td>
+<td style="text-align: right;">95.8</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab)<span class="ot">&lt;-</span><span class="fu">substr</span>(<span class="fu">rownames</span>(tab),<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tab,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">"gray90"</span>,<span class="st">"black"</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Equipement des ménages en en automobile par commune du Borgou"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Source : RP 2013, INS Bénin"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>     )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>OK, notre carte n’a pas de légende (c’est possible mais vraiment compliqué en R-Base) mais on appréciera le fait d’avoir pu la réaliser en ne se servant que de quelques fonctions élémentaires de R comme</p>
+<ul>
+<li><strong>Commentaire</strong> : Le taux moyen d’équipement automobile des ménages du département de Borgou est un moins élevé (4.2%) que la moyenne du pays (6.3%). Lorsque l’on examine les résultats par commune on constate que la situation est bien meilleure dans la commune de <em>Parakou</em> (7.5%) que dans les autres communes où elle peut descendre jusqu’à 1.7% (<em>Sinende</em>). Ce résultat est logique si l’on précise que Parakou est la capitale du département de Borgou et la 2e ville du Bénin après Cotonou.</li>
+</ul>
+</section>
+<section id="variation-4-zoom-sur-une-commune" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="variation-4-zoom-sur-une-commune"><span class="header-section-number">2.3.6</span> Variation 4 : Zoom sur une commune</h3>
+<p>Nous allons pour finir nous centrer sur la ville capitale de Cotonou qui correspond au département du Littoral. Nous avons vu que ce département est leplus privilégié de tous, mais on peut se demander si la situation est la même dans tous les arrondissements de la ville.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sel<span class="ot">&lt;-</span>don[don<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"LITTORAL"</span>,]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span><span class="fu">wtd.table</span>(x<span class="ot">&lt;-</span>sel<span class="sc">$</span>ARR_NAME,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>               y<span class="ot">&lt;-</span>sel<span class="sc">$</span>voitu,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">weights =</span> sel<span class="sc">$</span>WGT,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">digits =</span> )</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">addmargins</span>(tab), </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">0</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"Nombre de ménages équipés en automobile par arrondissement de Cotonou"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Nombre de ménages équipés en automobile par arrondissement de Cotonou</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 01</td>
+<td style="text-align: right;">7154</td>
+<td style="text-align: right;">1789</td>
+<td style="text-align: right;">8943</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 02</td>
+<td style="text-align: right;">8285</td>
+<td style="text-align: right;">1697</td>
+<td style="text-align: right;">9982</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 03</td>
+<td style="text-align: right;">9119</td>
+<td style="text-align: right;">2139</td>
+<td style="text-align: right;">11258</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 04</td>
+<td style="text-align: right;">5217</td>
+<td style="text-align: right;">711</td>
+<td style="text-align: right;">5928</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 05</td>
+<td style="text-align: right;">2657</td>
+<td style="text-align: right;">231</td>
+<td style="text-align: right;">2888</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 06</td>
+<td style="text-align: right;">9882</td>
+<td style="text-align: right;">1347</td>
+<td style="text-align: right;">11229</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 07</td>
+<td style="text-align: right;">3263</td>
+<td style="text-align: right;">716</td>
+<td style="text-align: right;">3979</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 08</td>
+<td style="text-align: right;">4222</td>
+<td style="text-align: right;">865</td>
+<td style="text-align: right;">5087</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 09</td>
+<td style="text-align: right;">6548</td>
+<td style="text-align: right;">2547</td>
+<td style="text-align: right;">9095</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 10</td>
+<td style="text-align: right;">5311</td>
+<td style="text-align: right;">937</td>
+<td style="text-align: right;">6248</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 11</td>
+<td style="text-align: right;">4380</td>
+<td style="text-align: right;">541</td>
+<td style="text-align: right;">4921</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 12</td>
+<td style="text-align: right;">12402</td>
+<td style="text-align: right;">3101</td>
+<td style="text-align: right;">15503</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 13</td>
+<td style="text-align: right;">9367</td>
+<td style="text-align: right;">1918</td>
+<td style="text-align: right;">11285</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">87806</td>
+<td style="text-align: right;">18540</td>
+<td style="text-align: right;">106346</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tabpct <span class="ot">&lt;-</span> <span class="fu">lprop</span>(tab)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabpct, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>,<span class="st">"Total"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits=</span><span class="dv">1</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span><span class="fu">c</span>(<span class="st">"% de ménages équipés en automobile par arrondissement de Cotonou"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>% de ménages équipés en automobile par arrondissement de Cotonou</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Non</th>
+<th style="text-align: right;">Oui</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 01</td>
+<td style="text-align: right;">80.0</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 02</td>
+<td style="text-align: right;">83.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 03</td>
+<td style="text-align: right;">81.0</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 04</td>
+<td style="text-align: right;">88.0</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 05</td>
+<td style="text-align: right;">92.0</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 06</td>
+<td style="text-align: right;">88.0</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 07</td>
+<td style="text-align: right;">82.0</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 08</td>
+<td style="text-align: right;">83.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 09</td>
+<td style="text-align: right;">72.0</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 10</td>
+<td style="text-align: right;">85.0</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 11</td>
+<td style="text-align: right;">89.0</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COTONOU 12</td>
+<td style="text-align: right;">80.0</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COTONOU 13</td>
+<td style="text-align: right;">83.0</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All</td>
+<td style="text-align: right;">82.6</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tab)<span class="ot">&lt;-</span><span class="fu">substr</span>(<span class="fu">rownames</span>(tab),<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Non"</span>,<span class="st">"Oui"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tab,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">"gray90"</span>,<span class="st">"black"</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Equipementen automobile par arrondissement de Cotonou"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Source : RP 2013, INS Bénin"</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>     )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><strong>Commentaire</strong> : Le département du Littoral est celui où les ménages sont le mieux équipés en automobiles (17.4%). Il existe toutefois des variations notables d’un arrondissement à l’autre, le maximum étant observé dans le 9e arrondissement (28%) et le minimum dans le 5e (8%). Ces valeurs demeurent dans tous les cas très élevées par rapport au reste du pays.</li>
+</ul>
 </section>
 </section>
-<section id="diapos-rmd-power-point-killer" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="diapos-rmd-power-point-killer"><span class="header-section-number">2.4</span> Diapos Rmd : Power Point killer</h2>
+<section id="power-point-killer" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="power-point-killer"><span class="header-section-number">2.4</span> Power Point killer</h2>
 <p>Lorsque l’on crée un fichier Markdown, on peut décider qu’il ne s’agit pas d’un document mais d’une présentation et opter pour l’un des deux modes par défaut appelés <code>slidy</code> et <code>ioslides</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/RmdDiapo.png" class="img-fluid"></p>
+<p><img src="resources/figures/RmdDiapo.png" class="img-fluid" width="669"></p>
 </div>
 </div>
 <p>On peut ensuite créer un diaporama en donnant un titre général et en séparant chaque diapo par un titre de niveau 2 correspondant à des lignes débutant par <code>##</code> comme dans l’exemple ci-dessous :</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/diapo_prog.png" class="img-fluid"></p>
+<p><img src="resources/figures/diapo_prog.png" class="img-fluid" width="595"></p>
 </div>
 </div>
 <p>Il ne reste plus qu’à compiler le programme avec l’icône <code>Knit</code> (pelotte de laine) pour générer un document .html en forme de dipositives.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="resources/figures/diapo1.png" class="img-fluid"></p>
+<p><img src="resources/figures/diapo1.png" class="img-fluid" width="898"></p>
 </div>
 <div class="cell-output-display">
-<p><img src="resources/figures/diapo2.png" class="img-fluid"></p>
+<p><img src="resources/figures/diapo2.png" class="img-fluid" width="898"></p>
 </div>
 <div class="cell-output-display">
-<p><img src="resources/figures/diapo3.png" class="img-fluid"></p>
+<p><img src="resources/figures/diapo3.png" class="img-fluid" width="898"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="resources/figures/diapo4.png" class="img-fluid" width="898"></p>
+</div>
+</div>
+<p>On verra par la suite comment améliorer la qualité des diapositives …</p>
+</section>
+<section id="gis-killer" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="gis-killer"><span class="header-section-number">2.5</span> GIS killer</h2>
+<p>Nous disposons par ailleurs de quatre fonds de carte correspondant au découpage du Bénin à chacune des échelles d’analyse. Ils ont été convertis dans un format lisible par R à l’aide du package <code>sf</code> et permettent de faire des cartes à l’aide du package <code>map_sf</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapsf)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>BEN1<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">"resources/data/BEN-MEN-2013/BEN-ADM1.shp"</span>, <span class="at">quiet=</span>T)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>BEN2<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">"resources/data/BEN-MEN-2013/BEN-ADM2.shp"</span>,<span class="at">quiet=</span>T)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>BEN3<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">"resources/data/BEN-MEN-2013/BEN-ADM3.shp"</span>,<span class="at">quiet=</span>T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="carte-du-bénin" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="carte-du-bénin"><span class="header-section-number">2.5.1</span> Carte du Bénin</h3>
+<p>Sans avoir besoin d’utiliser un SIG, nous pouvons d’ores et déjà construire une carte présentant tous les niveaux administratifs que nous placerons en tête de notre annuaire statistique national du Bénin</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BEN1, <span class="at">type=</span><span class="st">"typo"</span>,<span class="at">var=</span><span class="st">"DEP_NAME"</span>, <span class="at">leg_title =</span> <span class="st">"Département"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mf_map(BEN3, type="base",col=NA,border="white",lwd=0.1,add=T)</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BEN2, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="fl">0.5</span>,<span class="at">add=</span>T)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BEN1, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span>T)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_layout</span>(<span class="at">title =</span> <span class="st">"Départements et communes du Bénin en 2013"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">credits =</span> <span class="st">"Source : EE CIST 2023"</span>,<span class="at">frame =</span> T,<span class="at">scale =</span> T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 </section>
-<section id="en-résumé" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="en-résumé"><span class="header-section-number">2.5</span> En résumé</h2>
+<section id="carte-du-borgou" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="carte-du-borgou"><span class="header-section-number">2.5.2</span> Carte du Borgou</h3>
+<p>Pour illustrer l’annuaire statistique régional du département de Borgou, on réalisera une carte des communes de ce département.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>BOR1 <span class="ot">&lt;-</span> BEN1[BEN1<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"BORGOU"</span>,]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>BOR2 <span class="ot">&lt;-</span> BEN2[BEN2<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"BORGOU"</span>,]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>BOR3 <span class="ot">&lt;-</span> BEN3[BEN3<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"BORGOU"</span>,]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BOR2, <span class="at">type=</span><span class="st">"typo"</span>,<span class="at">var=</span><span class="st">"COM_NAME"</span>, <span class="at">leg_title =</span> <span class="st">"Communes"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BOR3, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"white"</span>,<span class="at">lwd=</span><span class="fl">0.1</span>,<span class="at">add=</span>T)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BOR3, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="fl">0.5</span>,<span class="at">add=</span>T)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(BOR2, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span>T)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_label</span>(BOR3,<span class="at">var=</span><span class="st">"ARR_NAME"</span>,<span class="at">col =</span> <span class="st">"white"</span>,<span class="at">cex=</span><span class="fl">0.4</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_layout</span>(<span class="at">title =</span> <span class="st">"Communes et arrondissements du Borgou en 2013"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">credits =</span> <span class="st">"Source : EE CIST 2023"</span>,<span class="at">frame =</span> T,<span class="at">scale =</span> T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section>
+<section id="carte-de-cotonou" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="carte-de-cotonou"><span class="header-section-number">2.5.3</span> Carte de Cotonou</h3>
+<p>On prend enfin l’exemple de la ville de Cotonou</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>COT1 <span class="ot">&lt;-</span> BEN1[BEN1<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"LITTORAL"</span>,]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>COT2 <span class="ot">&lt;-</span> BEN2[BEN2<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"LITTORAL"</span>,]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>COT3 <span class="ot">&lt;-</span> BEN3[BEN3<span class="sc">$</span>DEP_NAME<span class="sc">==</span><span class="st">"LITTORAL"</span>,]</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(COT3, <span class="at">type=</span><span class="st">"typo"</span>,<span class="at">var=</span><span class="st">"ARR_NAME"</span>,<span class="at">leg_pos =</span> <span class="cn">NA</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(COT3, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"white"</span>,<span class="at">lwd=</span><span class="fl">0.1</span>,<span class="at">add=</span>T)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(COT3, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="fl">0.5</span>,<span class="at">add=</span>T)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_map</span>(COT2, <span class="at">type=</span><span class="st">"base"</span>,<span class="at">col=</span><span class="cn">NA</span>,<span class="at">border=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span>T)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_label</span>(COT3,<span class="at">var=</span><span class="st">"ARR_NAME"</span>,<span class="at">col =</span> <span class="st">"white"</span>,<span class="at">cex=</span><span class="fl">0.6</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mf_layout</span>(<span class="at">title =</span> <span class="st">"Arrondissements de Cotonou en 2013"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">credits =</span> <span class="st">"Source : EE CIST 2023"</span>,<span class="at">frame =</span> T,<span class="at">scale =</span> T)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-OfficeKiller_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="en-résumé" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="en-résumé"><span class="header-section-number">2.6</span> En résumé</h2>
 <div class="cell" type="rmdnote">
 <div class="rmdnote">
 <p>
-R est un <code>Excel killer</code> mais aussi un <code>Word killer</code> voire un <code>Power point killer</code>… Adopter R peut nuire gravement à vos habitudes antérieures de travail.
+R est un <code>Excel killer</code> mais aussi un <code>Word killer</code> voire un <code>Power point killer</code> et peut-être même un <code>GIS killer</code>… Adopter R et Rstudio peut nuire gravement à vos habitudes antérieures de travail.
 </p>
 </div>
 </div>
